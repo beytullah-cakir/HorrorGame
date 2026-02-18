@@ -21,14 +21,16 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnEnable()
     {
-        _inputSystem.Player.Interact.Enable();
-        _inputSystem.Player.Interact.performed += OnInteractPerformed;
+        if (_inputSystem == null) _inputSystem = new PlayerInputSystem();
+        _inputSystem.Player.Enable(); 
     }
 
     private void OnDisable()
     {
-        _inputSystem.Player.Interact.performed -= OnInteractPerformed;
-        _inputSystem.Player.Interact.Disable();
+        if (_inputSystem != null)
+        {
+            _inputSystem.Player.Disable();
+        }
         
         if (_currentInteractable != null)
         {
@@ -40,6 +42,20 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         CheckForInteractable();
+
+        // E tuşuna basılıp basılmadığını Update içinde kontrol et
+        if (_inputSystem.Player.Interact.WasPressedThisFrame())
+        {
+            if (_currentInteractable != null)
+            {
+                Debug.Log("Interact Başarılı: " + _currentInteractable.ToString());
+                _currentInteractable.Interact();
+            }
+            else
+            {
+                Debug.Log("E'ye basıldı ama etkileşime girilecek bir şey yok.");
+            }
+        }
     }
 
     private void CheckForInteractable()
@@ -51,16 +67,14 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactionDistance))
         {
+            // Debug.DrawRay(ray.origin, ray.direction * interactionDistance, Color.green); // Görsel test için
             IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
 
             if (interactable != null)
             {
                 if (interactable != _currentInteractable)
                 {
-                    // Exit previous
                     if (_currentInteractable != null) _currentInteractable.OnHoverExit();
-                    
-                    // Enter new
                     _currentInteractable = interactable;
                     _currentInteractable.OnHoverEnter();
                 }
@@ -89,14 +103,6 @@ public class PlayerInteraction : MonoBehaviour
         if (interactionPromptUI != null)
         {
             interactionPromptUI.SetActive(false);
-        }
-    }
-
-    private void OnInteractPerformed(InputAction.CallbackContext context)
-    {
-        if (_currentInteractable != null)
-        {
-            _currentInteractable.Interact();
         }
     }
 }

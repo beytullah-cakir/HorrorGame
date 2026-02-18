@@ -45,7 +45,7 @@ Material:
     - _Cull: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
-    - _OutlineScale: 1.06
+    - _OutlineScale: 1.01
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 1
