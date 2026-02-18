@@ -8,7 +8,7 @@ namespace QuestSystem
     {
         [Header("UI References")]
         [SerializeField] private TMP_Text questTitleText;
-        [SerializeField] private TMP_Text questDescriptionText;
+        
         [SerializeField] private TMP_Text subTasksText;
 
         [Header("Styling")]
@@ -88,7 +88,6 @@ namespace QuestSystem
         private void ClearUI()
         {
             if (questTitleText != null) questTitleText.text = "No Active Quest";
-            if (questDescriptionText != null) questDescriptionText.text = "";
             if (subTasksText != null) subTasksText.text = "";
         }
     }

@@ -17,16 +17,6 @@ namespace QuestSystem
         {
             base.Awake();
         }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (interactToCollect) return; // Wait for E press
-            if (other.CompareTag("Player"))
-            {
-                Collect();
-            }
-        }
-
         public override void Interact()
         {
             if (interactToCollect)

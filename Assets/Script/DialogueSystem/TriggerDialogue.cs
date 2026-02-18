@@ -8,10 +8,20 @@ namespace DialogueSystem
         [SerializeField] private DialogueLine dialogueLine;
         
         [Header("Trigger Options")]
+        [SerializeField] private bool triggerOnStart = false;
+        [SerializeField] private float startDelay = 0.5f;
         [SerializeField] private bool triggerOnce = true;
         [SerializeField] private string targetTag = "Player";
 
         private bool hasTriggered = false;
+
+        private void Start()
+        {
+            if (triggerOnStart)
+            {
+                Invoke(nameof(Trigger), startDelay);
+            }
+        }
 
         private void OnTriggerEnter(Collider other)
         {
