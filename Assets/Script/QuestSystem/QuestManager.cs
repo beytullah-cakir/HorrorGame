@@ -38,7 +38,6 @@ namespace QuestSystem
         {
             if (quests == null || quests.Count == 0)
             {
-                Debug.LogWarning("[QuestManager] No quests found in the list!");
                 return;
             }
 
@@ -50,8 +49,6 @@ namespace QuestSystem
 
             // Automatically activate the first quest (index 0)
             ActivateQuest(0);
-            
-            Debug.Log("[QuestManager] System initialized. First quest activated automatically.");
         }
 
         public void ActivateNextQuest()
@@ -67,14 +64,12 @@ namespace QuestSystem
 
             if (nextIndex >= quests.Count)
             {
-                Debug.Log("[QuestManager] All quests are already completed or no more quests available.");
                 return;
             }
 
             // A quest can only be activated if the current one is completed
             if (quests[currentQuestIndex].state != QuestState.Completed)
             {
-                Debug.LogWarning("[QuestManager] Complete the current quest before activating the next one!");
                 return;
             }
 
@@ -87,8 +82,6 @@ namespace QuestSystem
 
             currentQuestIndex = index;
             quests[currentQuestIndex].state = QuestState.Active;
-            
-            Debug.Log($"[QuestManager] Activated Quest: {quests[currentQuestIndex].title}");
             OnQuestActivated?.Invoke(quests[currentQuestIndex]);
         }
 
@@ -99,14 +92,12 @@ namespace QuestSystem
 
             if (subTaskIndex < 0 || subTaskIndex >= activeQuest.subTasks.Count)
             {
-                Debug.LogError($"[QuestManager] SubTask index {subTaskIndex} out of bounds for quest {activeQuest.title}");
                 return;
             }
 
             if (activeQuest.subTasks[subTaskIndex].isCompleted) return;
 
             activeQuest.subTasks[subTaskIndex].isCompleted = true;
-            Debug.Log($"[QuestManager] SubTask Completed: {activeQuest.subTasks[subTaskIndex].description}");
             
             OnSubTaskCompleted?.Invoke(activeQuest, subTaskIndex);
 
@@ -123,14 +114,7 @@ namespace QuestSystem
             if (activeQuest == null || activeQuest.state == QuestState.Completed) return;
 
             // Optional check for subtasks if they weren't manually completed via CompleteSubTask
-            if (!activeQuest.AreAllSubTasksCompleted())
-            {
-                Debug.LogWarning("[QuestManager] Cannot complete quest! Subtasks are still pending.");
-                return;
-            }
-
             activeQuest.state = QuestState.Completed;
-            Debug.Log($"[QuestManager] Quest Completed: {activeQuest.title}");
             
             OnQuestCompleted?.Invoke(activeQuest);
 
@@ -138,10 +122,6 @@ namespace QuestSystem
             if (activeQuest.autoActivateNext)
             {
                 ActivateNextQuest();
-            }
-            else
-            {
-                Debug.Log($"[QuestManager] Quest '{activeQuest.title}' completed, but next quest requires trigger.");
             }
         }
 

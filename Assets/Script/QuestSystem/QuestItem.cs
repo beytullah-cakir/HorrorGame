@@ -26,14 +26,12 @@ namespace QuestSystem
             // 1. Görev sırası kontrolü
             if (requiredQuest != null && activeQuest != requiredQuest)
             {
-                Debug.Log($"[QuestItem] Henüz bu göreve gelmediniz! Aktif görev: {(activeQuest != null ? activeQuest.title : "Yok")}");
                 return;
             }
 
             // 2. Kutu kontrolü (Artık her küçük eşya için elinde kutu olması ŞART)
             if (PlayerCarryController.Instance == null || !PlayerCarryController.Instance.HasBox())
             {
-                Debug.Log("[QuestItem] Eşyaları toplamak için önce elinizde bir kutu olmalı!");
                 return;
             }
 
@@ -69,8 +67,6 @@ namespace QuestSystem
             {
                 AudioSource.PlayClipAtPoint(collectSound, transform.position);
             }
-
-            Debug.Log($"[QuestItem] Item {gameObject.name} collected!");
             
             // Crucial: Clean up highlight before destroying
             OnHoverExit(); 

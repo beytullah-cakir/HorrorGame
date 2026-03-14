@@ -7,7 +7,7 @@ namespace QuestSystem
     {
         [Header("Quest Activation")]
         [SerializeField] private Quest requiredQuest;
-        [SerializeField] private bool activateOnStart = false;
+        
 
         [Header("Material Settings")]
         [Tooltip("Kutu yerleştirilince şeffaf kutunun dönüşeceği normal materyal.")]
@@ -15,15 +15,16 @@ namespace QuestSystem
         
         private bool _isActivated = false;
         private bool _isPlaced = false;
-        private MeshRenderer _meshRenderer;
+        private Collider _collider;
 
         protected override void Awake()
         {
             base.Awake();
-            _meshRenderer = GetComponent<MeshRenderer>();
+            _collider = GetComponent<Collider>();
             
-            // Oyun başında şeffaf kutu görünmez
-            if (!activateOnStart) gameObject.SetActive(false);
+            // Oyun başında renderer ve collider kapalı olur (Raycast algılamaz)
+            if (targetRenderer != null) targetRenderer.enabled = false;
+            if (_collider != null) _collider.enabled = false;
         }
 
         private void OnEnable()
@@ -41,8 +42,8 @@ namespace QuestSystem
             if (quest == requiredQuest && !_isPlaced)
             {
                 _isActivated = true;
-                gameObject.SetActive(true);
-                Debug.Log($"[BoxPlacementGhost] {gameObject.name} aktif oldu, kutu yerleştirilebilir.");
+                if (targetRenderer != null) targetRenderer.enabled = true;
+                if (_collider != null) _collider.enabled = true;
             }
         }
 
@@ -50,14 +51,9 @@ namespace QuestSystem
         {
             if (!_isActivated || _isPlaced) return;
 
-            // Oyuncunun elinde kutu var mı kontrolü
             if (PlayerCarryController.Instance != null && PlayerCarryController.Instance.HasBox())
             {
                 PlaceBox();
-            }
-            else
-            {
-                Debug.Log("Elinizde yerleştirilecek bir kutu yok!");
             }
         }
 
@@ -66,19 +62,23 @@ namespace QuestSystem
             _isPlaced = true;
             _isActivated = false;
 
-            // 1. Elindeki kutuyu gizle
+            // 1. Önce üzerindeki vurguyu (highlight) temizle ki eski materyali geri yüklemesin
+            OnHoverExit();
+
             PlayerCarryController.Instance.HideBox();
 
-            // 2. Şeffaf kutunun materyalini normal (dolu) materyale çevir
-            if (_meshRenderer != null && filledMaterial != null)
+            // 2. Materyali tamamen silip yenisini ekle
+            if (targetRenderer != null && filledMaterial != null)
             {
-                _meshRenderer.material = filledMaterial;
+                targetRenderer.enabled = true;
+                Material[] newMats = new Material[] { filledMaterial };
+                targetRenderer.materials = newMats;
+                
+                // 3. Base class'taki orijinal materyal listesini de güncelle (Güvenlik için)
+                _originalMaterials = newMats;
             }
 
-            // 3. Etkileşimi kapat (Artık üzerine gelinince parlama yapmasın)
             this.enabled = false; 
-
-            Debug.Log($"[BoxPlacementGhost] Kutu yerleştirildi, materyal güncellendi.");
         }
     }
 }

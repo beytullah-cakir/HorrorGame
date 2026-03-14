@@ -37,11 +37,6 @@ namespace QuestSystem
             if (boxAnimator != null)
             {
                 boxAnimator.SetTrigger(closeTriggerName);
-                Debug.Log($"[QuestBoxController] {gameObject.name} closing box because quest '{targetQuestObject?.title}' completed.");
-            }
-            else
-            {
-                Debug.LogWarning($"[QuestBoxController] {gameObject.name} Animator is not assigned!");
             }
         }
     }

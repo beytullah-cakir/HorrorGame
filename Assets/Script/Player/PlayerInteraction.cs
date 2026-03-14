@@ -48,12 +48,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (_currentInteractable != null)
             {
-                Debug.Log("Interact Başarılı: " + _currentInteractable.ToString());
                 _currentInteractable.Interact();
-            }
-            else
-            {
-                Debug.Log("E'ye basıldı ama etkileşime girilecek bir şey yok.");
             }
         }
     }

@@ -19,7 +19,6 @@ namespace QuestSystem
             // 1. Görev Sırası Kontrolü: Eğer bu kutu şu anki görev değilse alma.
             if (boxQuest != null && activeQuest != boxQuest)
             {
-                Debug.Log($"[BoxPickup] Henüz kutuyu alma görevinde değilsiniz! Aktif görev: {(activeQuest != null ? activeQuest.title : "Yok")}");
                 return;
             }
 
@@ -28,7 +27,7 @@ namespace QuestSystem
 
         private void Pickup()
         {
-            // 2. Eldeki kutuyu görünür yap
+            // 2. Eldeki kutuyu görünür yap (Sizin isteğinizle eldeki kutu aktif olacak)
             if (PlayerCarryController.Instance != null)
             {
                 PlayerCarryController.Instance.ShowBox();
@@ -41,10 +40,8 @@ namespace QuestSystem
             if (pickupEffect != null) Instantiate(pickupEffect, transform.position, Quaternion.identity);
             if (pickupSound != null) AudioSource.PlayClipAtPoint(pickupSound, transform.position);
 
-            Debug.Log("[BoxPickup] Kutu alındı ve görev tamamlandı.");
-
-            // 5. Yerden bu kutuyu sil
-            OnHoverExit(); // Highlight'ı temizle
+            // 5. Yerden bu kutuyu SİL (Yerdeki kutu hemen yok olsun)
+            OnHoverExit(); 
             Destroy(gameObject);
         }
     }

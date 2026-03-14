@@ -34,7 +34,6 @@ public class DoorAnimatorController : InteractableBase
     {
         if (isLocked)
         {
-            Debug.Log("Kapı kilitli, açılamıyor!");
             return;
         }
 
@@ -52,13 +51,11 @@ public class DoorAnimatorController : InteractableBase
 
             _targetRotation = _closedRotation * Quaternion.Euler(0, openRotationAngle * rotationSign, 0);
             _isOpen = true;
-            Debug.Log("Kapı Açılıyor");
         }
         else
         {
             _targetRotation = _closedRotation;
             _isOpen = false;
-            Debug.Log("Kapı Kapanıyor");
         }
     }
 }

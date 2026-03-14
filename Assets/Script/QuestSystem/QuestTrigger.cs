@@ -57,7 +57,6 @@ namespace QuestSystem
             }
 
             hasTriggered = true;
-            Debug.Log($"[QuestTrigger] {type} triggered!");
         }
     }
 }

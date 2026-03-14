@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4333e253832104ab345e78c82fa756, type: 3}
+  m_Name: Collect bedroom Items
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
+  id: 1
+  title: "Yatak odas\u0131ndaki e\u015Fyalar\u0131 topla"
+  state: 2
+  autoActivateNext: 1
+  subTasks:
+  - description: "Aile foto\u011Fraf\u0131"
+    isCompleted: 1
+  - description: "Babam\u0131n paltosu"
+    isCompleted: 1
+  - description: "Masal kitab\u0131"
+    isCompleted: 1

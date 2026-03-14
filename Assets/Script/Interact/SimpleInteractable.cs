@@ -4,7 +4,6 @@ public class SimpleInteractable : MonoBehaviour, IInteractable
 {
     public void Interact()
     {
-        Debug.Log("Interacting with " + gameObject.name);
     }
 
     public void OnHoverEnter()

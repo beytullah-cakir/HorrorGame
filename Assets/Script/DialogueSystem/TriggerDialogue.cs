@@ -41,11 +41,9 @@ namespace DialogueSystem
             {
                 DialogueManager.Instance.PlayDialogue(dialogueLine);
                 hasTriggered = true;
-                Debug.Log($"[TriggerDialogue] Triggered: {dialogueLine.text.Substring(0, Mathf.Min(20, dialogueLine.text.Length))}...");
             }
             else
             {
-                Debug.LogError("[TriggerDialogue] DialogueManager instance not found!");
             }
         }
     }

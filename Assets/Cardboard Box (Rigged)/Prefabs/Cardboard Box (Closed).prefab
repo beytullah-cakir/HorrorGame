@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 471926016678008825}
   - component: {fileID: 1138011603960934688}
   - component: {fileID: 5928059993758718943}
+  - component: {fileID: 8499096013198591957}
   m_Layer: 0
   m_Name: Cardboard Box (Mesh)
   m_TagString: Untagged
@@ -193,6 +194,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.47892562, y: 0.38345516, z: 0.30980012}
   m_Center: {x: -0.00003129244, y: -0.0000012665987, z: 0.000000037252892}
+--- !u!114 &8499096013198591957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2244217876451162829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d4b690a7fa6f0459acc16e6bb5ddd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.BoxPickup
+  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
+  targetRenderer: {fileID: 1138011603960934688}
+  boxQuest: {fileID: 11400000, guid: 70a7fbd5e356bb6419ca9af237d5b53d, type: 2}
+  pickupEffect: {fileID: 0}
+  pickupSound: {fileID: 0}
 --- !u!1 &3063482152217557950
 GameObject:
   m_ObjectHideFlags: 0

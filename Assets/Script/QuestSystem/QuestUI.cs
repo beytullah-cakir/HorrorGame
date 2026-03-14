@@ -76,8 +76,6 @@ namespace QuestSystem
         {
             if (questTitleText != null)
                 questTitleText.text = $"<alpha=#{completedAlpha}><s>{quest.title}</s>";
-            
-            Debug.Log($"[QuestUI] Quest {quest.title} visual marked as completed (faded + strikethrough).");
         }
 
         private void HandleSubTaskCompleted(Quest quest, int index)
