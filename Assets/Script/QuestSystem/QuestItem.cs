@@ -19,17 +19,28 @@ namespace QuestSystem
             base.Awake();
         }
 
+
+        public override void OnHoverEnter()
+        {
+            if (!IsQuestActive()) return;
+            base.OnHoverEnter();
+        }
+
+        public override void OnHoverExit()
+        {
+            if (!IsQuestActive()) return;
+            base.OnHoverExit();
+        }
+
         public override void Interact()
         {
-            Quest activeQuest = QuestManager.Instance.GetActiveQuest();
-            
             // 1. Görev sırası kontrolü
-            if (requiredQuest != null && activeQuest != requiredQuest)
+            if (!IsQuestActive())
             {
                 return;
             }
 
-            // 2. Kutu kontrolü (Artık her küçük eşya için elinde kutu olması ŞART)
+            // 2. Kutu kontrolü
             if (PlayerCarryController.Instance == null || !PlayerCarryController.Instance.HasBox())
             {
                 return;
@@ -39,6 +50,17 @@ namespace QuestSystem
             {
                 Collect();
             }
+        }
+
+        public override bool CanInteract()
+        {
+            return IsQuestActive();
+        }
+
+        private bool IsQuestActive()
+        {
+            Quest activeQuest = QuestManager.Instance.GetActiveQuest();
+            return requiredQuest == null || activeQuest == requiredQuest;
         }
 
         public void Collect()

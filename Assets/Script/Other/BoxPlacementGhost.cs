@@ -47,6 +47,23 @@ namespace QuestSystem
             }
         }
 
+        public override bool CanInteract()
+        {
+            return _isActivated && !_isPlaced;
+        }
+
+        public override void OnHoverEnter()
+        {
+            if (!CanInteract()) return;
+            base.OnHoverEnter();
+        }
+
+        public override void OnHoverExit()
+        {
+            if (!CanInteract()) return;
+            base.OnHoverExit();
+        }
+
         public override void Interact()
         {
             if (!_isActivated || _isPlaced) return;

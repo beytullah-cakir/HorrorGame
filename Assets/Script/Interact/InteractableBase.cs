@@ -37,5 +37,10 @@ namespace QuestSystem
             targetRenderer.materials = _originalMaterials;
             _originalMaterials = null;
         }
+
+        public virtual bool CanInteract()
+        {
+            return true;
+        }
     }
 }

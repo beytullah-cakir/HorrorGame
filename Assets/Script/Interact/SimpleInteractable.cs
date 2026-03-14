@@ -15,4 +15,9 @@ public class SimpleInteractable : MonoBehaviour, IInteractable
     {
         // Remove highlight logic here
     }
+
+    public bool CanInteract()
+    {
+        return true;
+    }
 }

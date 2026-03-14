@@ -74,7 +74,11 @@ public class PlayerInteraction : MonoBehaviour
                     _currentInteractable.OnHoverEnter();
                 }
                 
-                if (interactionPromptUI != null) interactionPromptUI.SetActive(true);
+                // Sadece etkileşim mümkünse E yazısını göster
+                if (interactionPromptUI != null) 
+                {
+                    interactionPromptUI.SetActive(interactable.CanInteract());
+                }
             }
             else
             {
