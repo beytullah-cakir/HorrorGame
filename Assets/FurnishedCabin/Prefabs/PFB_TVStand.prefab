@@ -224,7 +224,6 @@ GameObject:
   - component: {fileID: 4000011810544638}
   - component: {fileID: 95000014167001920}
   - component: {fileID: 114000011518356856}
-  - component: {fileID: 65000010569510288}
   m_Layer: 0
   m_Name: PFB_TVStand
   m_TagString: Untagged
@@ -285,27 +284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reachRange: 1.8
---- !u!65 &65000010569510288
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000010719739470}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.96, y: 0.55, z: 0.81}
-  m_Center: {x: 0, y: 0.33, z: 0.54}
 --- !u!1 &1000010748514882
 GameObject:
   m_ObjectHideFlags: 0

@@ -133,6 +133,16 @@ namespace QuestSystem
             Debug.Log($"[QuestManager] Quest Completed: {activeQuest.title}");
             
             OnQuestCompleted?.Invoke(activeQuest);
+
+            // Transition based on quest settings
+            if (activeQuest.autoActivateNext)
+            {
+                ActivateNextQuest();
+            }
+            else
+            {
+                Debug.Log($"[QuestManager] Quest '{activeQuest.title}' completed, but next quest requires trigger.");
+            }
         }
 
         public Quest GetActiveQuest()

@@ -385,8 +385,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 3989617252346260709}
   m_AABB:
-    m_Center: {x: -0.18884812, y: -0.41417217, z: 0.000000037252903}
-    m_Extent: {x: 0.18468417, y: 0.2339434, z: 0.15490004}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_DirtyAABB: 0
 --- !u!1 &3772926062945615809
 GameObject:
@@ -552,7 +552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8449298101302304787}
-  - component: {fileID: 2634599346055670543}
+  - component: {fileID: 5331903659818990356}
   m_Layer: 0
   m_Name: Cardboard Box (Opened)
   m_TagString: Untagged
@@ -577,22 +577,28 @@ Transform:
   - {fileID: 7697083577239795610}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &2634599346055670543
-Animation:
+--- !u!95 &5331903659818990356
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7881864654587423385}
   m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 983c3bd8f37111d4da1dd7b03b2e241c, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
-  m_CullingType: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8312289482295272710
 GameObject:
   m_ObjectHideFlags: 0

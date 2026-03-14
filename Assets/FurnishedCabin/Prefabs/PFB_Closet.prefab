@@ -380,7 +380,6 @@ GameObject:
   - component: {fileID: 114000011804433270}
   - component: {fileID: 114000013162252494}
   - component: {fileID: 95000011105672242}
-  - component: {fileID: 65000012470642568}
   m_Layer: 8
   m_Name: PFB_Closet
   m_TagString: Untagged
@@ -454,27 +453,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &65000012470642568
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000012593365136}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.18, y: 1.91, z: 1.93}
-  m_Center: {x: 0, y: 1.05, z: 0.63}
 --- !u!1 &1000013877102048
 GameObject:
   m_ObjectHideFlags: 0
