@@ -33,7 +33,7 @@ RenderSettings:
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
-  m_DefaultReflectionResolution: 128
+  m_DefaultReflectionResolution: 2048
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 789beef4ed60d2144b295b2b66322c61, type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 4890085278179872738, guid: b47479362d4252342bca999d7666b0c1, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -850,6 +850,26 @@ PrefabInstance:
     - target: {fileID: 576878445697729356, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754942218424402462, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754942218424402462, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754942218424402462, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754942218424402462, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614411247362401691, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
+      propertyPath: interactionDistance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8399809889431916564, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
       propertyPath: m_LocalPosition.x
