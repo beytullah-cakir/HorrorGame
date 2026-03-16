@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   playerCamera: {fileID: 2754942218424402462}
-  interactionDistance: 3
+  interactionDistance: 5
   interactionPromptUI: {fileID: 0}
 --- !u!114 &7536716235969686149
 MonoBehaviour:
@@ -205,6 +205,7 @@ MonoBehaviour:
   visualBox: {fileID: 3918628406906788813}
   carriedBoxAnimator: {fileID: 4732358856265264581}
   closeTriggerName: IsClosed
+  openTriggerName: Open
 --- !u!1 &799747981153776568
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +371,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2295789852125430219}
   - component: {fileID: 8187976826333429195}
-  - component: {fileID: 5755489001076500137}
   m_Layer: 0
   m_Name: Cardboard Box (Mesh)
   m_TagString: Untagged
@@ -470,23 +470,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.18884812, y: -0.41417217, z: 0.000000037252903}
     m_Extent: {x: 0.18468417, y: 0.2339434, z: 0.15490004}
   m_DirtyAABB: 0
---- !u!114 &5755489001076500137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3609259409194287942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48d4b690a7fa6f0459acc16e6bb5ddd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.BoxPickup
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 8187976826333429195}
-  boxQuest: {fileID: 11400000, guid: 70a7fbd5e356bb6419ca9af237d5b53d, type: 2}
-  pickupEffect: {fileID: 0}
-  pickupSound: {fileID: 0}
 --- !u!1 &3918628406906788813
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3430250788481082438
 Transform:
   m_ObjectHideFlags: 0
@@ -712,8 +695,8 @@ Camera:
   m_GameObject: {fileID: 4824355474314065606}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

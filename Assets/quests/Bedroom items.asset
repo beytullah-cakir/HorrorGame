@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
   id: 1
   title: "Yatak odas\u0131ndaki e\u015Fyalar\u0131 topla"
-  state: 0
+  state: 2
   autoActivateNext: 1
   subTasks:
-  - description: "Aile foto\u011Fraf\u0131"
+  - description: Cep Saati
     isCompleted: 0
-  - description: "Babam\u0131n paltosu"
+  - description: Palto
     isCompleted: 0
-  - description: "Masal kitab\u0131"
+  - description: "Aile Foto\u011Fraf\u0131"
     isCompleted: 0

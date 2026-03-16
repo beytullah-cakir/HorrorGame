@@ -7,7 +7,6 @@ namespace QuestSystem
     {
         [Header("Quest Activation")]
         [SerializeField] private Quest requiredQuest;
-        
 
         [Header("Material Settings")]
         [Tooltip("Kutu yerleştirilince şeffaf kutunun dönüşeceği normal materyal.")]
@@ -79,21 +78,26 @@ namespace QuestSystem
             _isPlaced = true;
             _isActivated = false;
 
-            // 1. Önce üzerindeki vurguyu (highlight) temizle ki eski materyali geri yüklemesin
+            // 1. Önce üzerindeki vurguyu (highlight) temizle
             OnHoverExit();
 
-            PlayerCarryController.Instance.HideBox();
+            // 2. Eldeki kutuyu gizle
+            if (PlayerCarryController.Instance != null)
+            {
+                PlayerCarryController.Instance.HideBox(); // Anında kaybolur
+            }
 
-            // 2. Materyali tamamen silip yenisini ekle
+            // 3. Materyali doldurulmuş (filled) kutu haline getir
             if (targetRenderer != null && filledMaterial != null)
             {
                 targetRenderer.enabled = true;
                 Material[] newMats = new Material[] { filledMaterial };
                 targetRenderer.materials = newMats;
-                
-                // 3. Base class'taki orijinal materyal listesini de güncelle (Güvenlik için)
                 _originalMaterials = newMats;
             }
+
+            // 4. Görevi tamamla
+            QuestManager.Instance.CompleteCurrentQuest();
 
             this.enabled = false; 
         }
