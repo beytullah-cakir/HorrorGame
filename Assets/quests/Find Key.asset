@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Find Key
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
   id: 
-  title: "Rit\xFCel odas\u0131n\u0131n anahtar\u0131n\u0131 bul"
+  title: "Banyonun anahtar\u0131n\u0131 bul"
   state: 0
   autoActivateNext: 1
   subTasks: []

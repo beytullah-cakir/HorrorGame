@@ -179,6 +179,14 @@ PrefabInstance:
       propertyPath: isLocked
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1401766891555319385, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
+      propertyPath: boxQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: d8bd8e34edb448144927dc08b386af6a, type: 2}
+    - target: {fileID: 5963656693298154199, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
+      propertyPath: boxQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 70a7fbd5e356bb6419ca9af237d5b53d, type: 2}
     - target: {fileID: 9011487594844846738, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
       propertyPath: subTaskIndex
       value: 1
@@ -187,10 +195,14 @@ PrefabInstance:
       propertyPath: requiredQuest
       value: 
       objectReference: {fileID: 11400000, guid: d8bd8e34edb448144927dc08b386af6a, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 618410331445628059, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1000011272134668, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 838041668}
     - targetCorrespondingSourceObject: {fileID: 1000010766857948, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 853291408}
@@ -257,6 +269,40 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 305205746e38aeb4980ef8e2bf3a6eca, type: 3}
+--- !u!1 &838041662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000011272134668, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
+  m_PrefabInstance: {fileID: 8134039}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &838041666 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23000010269359610, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
+  m_PrefabInstance: {fileID: 8134039}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &838041668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838041662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c001fd132f3f245b3fab235327d03c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestLockedDoorController
+  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
+  targetRenderer: {fileID: 838041666}
+  openRotationAngle: 90
+  rotationSpeed: 5
+  isLocked: 1
+  invertRotation: 0
+  triggerQuest: {fileID: 11400000, guid: f0d8e5b368d58c841ad8971b5fef57ee, type: 2}
+  lockedDialogue:
+    text: "Bu kap\u0131 nede kilitli. Anahtar\u0131 nerede acaba?"
+    voiceClip: {fileID: 0}
+    useTypewriter: 1
+  completeQuestOnDialogueFinish: 1
 --- !u!1001 &844288484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -998,7 +1044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3918628406906788813, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4012623175677038700, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
       propertyPath: m_Layer

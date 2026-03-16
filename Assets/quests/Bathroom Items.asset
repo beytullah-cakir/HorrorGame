@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c4333e253832104ab345e78c82fa756, type: 3}
-  m_Name: Box in the bedroom
+  m_Name: Bathroom Items
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
-  id: 0
-  title: Kutuyu Al
-  state: 1
+  id: 
+  title: "Banyodaki e\u015Fyalar\u0131 topla"
+  state: 2
   autoActivateNext: 1
   subTasks: []

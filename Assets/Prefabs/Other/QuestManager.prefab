@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.QuestManager
   quests:
-  - {fileID: 11400000, guid: 40b97b3a71961e347b88737267eae2c3, type: 2}
   - {fileID: 11400000, guid: 70a7fbd5e356bb6419ca9af237d5b53d, type: 2}
   - {fileID: 11400000, guid: 4e1f53d90eb66a643894f8419246f5ff, type: 2}
-  - {fileID: 11400000, guid: 421a32d8351823c479dbee9dd451c6cc, type: 2}
   - {fileID: 11400000, guid: d8bd8e34edb448144927dc08b386af6a, type: 2}
+  - {fileID: 11400000, guid: 4e1f53d90eb66a643894f8419246f5ff, type: 2}
+  - {fileID: 11400000, guid: f0d8e5b368d58c841ad8971b5fef57ee, type: 2}
+  - {fileID: 11400000, guid: 60bd171183f179648b900f524ebc03d8, type: 2}
   currentQuestIndex: 0
