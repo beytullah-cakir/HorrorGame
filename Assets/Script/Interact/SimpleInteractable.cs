@@ -6,15 +6,8 @@ public class SimpleInteractable : MonoBehaviour, IInteractable
     {
     }
 
-    public void OnHoverEnter()
-    {
-        // Add highlight logic here if needed for this specific object
-    }
-
-    public void OnHoverExit()
-    {
-        // Remove highlight logic here
-    }
+    public void OnHoverEnter() { }
+    public void OnHoverExit() { }
 
     public bool CanInteract()
     {

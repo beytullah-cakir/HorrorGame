@@ -51,18 +51,6 @@ namespace QuestSystem
             return _isActivated && !_isPlaced;
         }
 
-        public override void OnHoverEnter()
-        {
-            if (!CanInteract()) return;
-            base.OnHoverEnter();
-        }
-
-        public override void OnHoverExit()
-        {
-            if (!CanInteract()) return;
-            base.OnHoverExit();
-        }
-
         public override void Interact()
         {
             if (!_isActivated || _isPlaced) return;
@@ -78,10 +66,7 @@ namespace QuestSystem
             _isPlaced = true;
             _isActivated = false;
 
-            // 1. Önce üzerindeki vurguyu (highlight) temizle
-            OnHoverExit();
-
-            // 2. Eldeki kutuyu gizle
+            // Eldeki kutuyu gizle
             if (PlayerCarryController.Instance != null)
             {
                 PlayerCarryController.Instance.HideBox(); // Anında kaybolur

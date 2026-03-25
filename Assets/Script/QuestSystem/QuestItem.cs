@@ -14,23 +14,10 @@ namespace QuestSystem
         [SerializeField] private GameObject collectEffect;
         [SerializeField] private AudioClip collectSound;
 
-        protected override void Awake()
-        {
-            base.Awake();
-        }
 
 
-        public override void OnHoverEnter()
-        {
-            if (!IsQuestActive()) return;
-            base.OnHoverEnter();
-        }
 
-        public override void OnHoverExit()
-        {
-            if (!IsQuestActive()) return;
-            base.OnHoverExit();
-        }
+
 
         public override void Interact()
         {
@@ -90,8 +77,6 @@ namespace QuestSystem
                 AudioSource.PlayClipAtPoint(collectSound, transform.position);
             }
             
-            // Crucial: Clean up highlight before destroying
-            OnHoverExit(); 
             Destroy(gameObject);
         }
     }
