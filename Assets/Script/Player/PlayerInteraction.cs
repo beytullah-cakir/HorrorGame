@@ -10,6 +10,15 @@ public class PlayerInteraction : MonoBehaviour
     public float interactionDistance = 3.0f;
     [Tooltip("The UI GameObject showing the 'E' prompt.")]
     public GameObject interactionPromptUI;
+    [Tooltip("The crosshair RectTransform in the center of the screen.")]
+    public RectTransform crosshairRect;
+
+    [Header("Crosshair Settings")]
+    public float normalScale = 0.5f;
+    public float hoverScale = 1.0f;
+    public float scaleSpeed = 10.0f;
+
+    private Vector3 _currentCrosshairScale;
 
     private PlayerInputSystem _inputSystem;
     private IInteractable _currentInteractable;
@@ -17,6 +26,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Awake()
     {
         _inputSystem = new PlayerInputSystem();
+        if (crosshairRect != null) _currentCrosshairScale = Vector3.one * normalScale;
     }
 
     private void OnEnable()
@@ -42,6 +52,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         CheckForInteractable();
+        HandleCrosshairScale();
 
         // E tuşuna basılıp basılmadığını Update içinde kontrol et
         if (_inputSystem.Player.Interact.WasPressedThisFrame())
@@ -51,6 +62,17 @@ public class PlayerInteraction : MonoBehaviour
                 _currentInteractable.Interact();
             }
         }
+    }
+
+    private void HandleCrosshairScale()
+    {
+        if (crosshairRect == null) return;
+
+        float targetScaleValue = (_currentInteractable != null && _currentInteractable.CanInteract()) ? hoverScale : normalScale;
+        Vector3 targetScale = Vector3.one * targetScaleValue;
+
+        _currentCrosshairScale = Vector3.Lerp(_currentCrosshairScale, targetScale, Time.deltaTime * scaleSpeed);
+        crosshairRect.localScale = _currentCrosshairScale;
     }
 
     private void CheckForInteractable()

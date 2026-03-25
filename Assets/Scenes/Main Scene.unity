@@ -291,7 +291,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c001fd132f3f245b3fab235327d03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestLockedDoorController
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
   targetRenderer: {fileID: 838041666}
   openRotationAngle: 90
   rotationSpeed: 5
@@ -422,7 +421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c145a0e3b18474f9aa666a45ea0974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DrawerController
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
   targetRenderer: {fileID: 853291406}
   movementAxis: 2
   openDistance: 0.5
@@ -591,6 +589,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1774679526804827654, guid: 468341433f8a2a0478e86605b43c6b94, type: 3}
+      propertyPath: m_text
+      value: sdfsdfsdfsfd
+      objectReference: {fileID: 0}
+    - target: {fileID: 1774679526804827654, guid: 468341433f8a2a0478e86605b43c6b94, type: 3}
+      propertyPath: m_fontSize
+      value: 18.25
+      objectReference: {fileID: 0}
     - target: {fileID: 9072885300619076108, guid: 468341433f8a2a0478e86605b43c6b94, type: 3}
       propertyPath: m_Name
       value: QuestCanvas
@@ -863,6 +869,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80fb81772cb9d054cad04173a387af74, type: 3}
+--- !u!224 &1510646707 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6947420046522553766, guid: 1fb6a0b82cc3dbb4fa2caef7e4791af0, type: 3}
+  m_PrefabInstance: {fileID: 844288484}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1515944867
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,6 +1089,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6614411247362401691, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
+      propertyPath: hoverScale
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614411247362401691, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
+      propertyPath: normalScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6614411247362401691, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
+      propertyPath: crosshairRect
+      value: 
+      objectReference: {fileID: 1510646707}
     - target: {fileID: 6716082192266173588, guid: 567140e8b16c2a24cb9411d83b6d24a5, type: 3}
       propertyPath: m_Layer
       value: 2
