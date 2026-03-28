@@ -26,10 +26,10 @@ namespace QuestSystem
     [CreateAssetMenu(fileName = "New Quest", menuName = "Quest System/Quest")]
     public class Quest : ScriptableObject
     {
-        public string id; // Unique identifier
+        
         public string title;
         public QuestState state;
-        public bool autoActivateNext = true; // NEW: Should the next quest start automatically?
+        public bool autoActivateNext = true; 
         public List<SubTask> subTasks = new List<SubTask>();
 
         public bool AreAllSubTasksCompleted()

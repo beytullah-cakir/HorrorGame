@@ -15,12 +15,13 @@ namespace QuestSystem
         private bool _isActivated = false;
         private bool _isPlaced = false;
         private Collider _collider;
+        private SkinnedMeshRenderer targetRenderer;
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
-            _collider = GetComponent<Collider>();
             
+            _collider = GetComponent<Collider>();
+            targetRenderer=GetComponent<SkinnedMeshRenderer>();
             // Oyun başında renderer ve collider kapalı olur (Raycast algılamaz)
             if (targetRenderer != null) targetRenderer.enabled = false;
             if (_collider != null) _collider.enabled = false;
@@ -55,7 +56,7 @@ namespace QuestSystem
         {
             if (!_isActivated || _isPlaced) return;
 
-            if (PlayerCarryController.Instance != null && PlayerCarryController.Instance.HasBox())
+            if (PlayerCarryController.Instance.HasBox())
             {
                 PlaceBox();
             }
@@ -69,16 +70,13 @@ namespace QuestSystem
             // Eldeki kutuyu gizle
             if (PlayerCarryController.Instance != null)
             {
-                PlayerCarryController.Instance.HideBox(); // Anında kaybolur
+                PlayerCarryController.Instance.ShowBox(false);
             }
 
             // 3. Materyali doldurulmuş (filled) kutu haline getir
             if (targetRenderer != null && filledMaterial != null)
-            {
-                targetRenderer.enabled = true;
-                Material[] newMats = new Material[] { filledMaterial };
-                targetRenderer.materials = newMats;
-                _originalMaterials = newMats;
+            {          
+                targetRenderer.material = filledMaterial;
             }
 
             // 4. Görevi tamamla

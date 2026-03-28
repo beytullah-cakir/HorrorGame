@@ -23,9 +23,9 @@ public class DrawerController : InteractableBase
     private Vector3 _closedPosition;
     private Vector3 _targetPosition;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
+       
         _closedPosition = transform.localPosition;
         _targetPosition = _closedPosition;
     }

@@ -8,38 +8,17 @@ namespace QuestSystem
         public static PlayerCarryController Instance { get; private set; }
 
         [Header("Box Visual Settings")]
-        [SerializeField] private GameObject visualBox; 
+        [SerializeField] private GameObject visualBox;
 
         private void Awake()
         {
-            if (Instance == null) Instance = this;
-            else Destroy(gameObject);
-
-            if (visualBox != null)
-            {
-                visualBox.SetActive(false);
-            }
+            Instance = this;
+            visualBox.SetActive(false);
         }
 
-        public void ShowBox()
-        {
-            if (visualBox != null)
-            {
-                visualBox.SetActive(true);
-            }
-        }
+        public void ShowBox(bool show)=> visualBox.SetActive(show);
 
-        public void HideBox()
-        {
-            if (visualBox != null)
-            {
-                visualBox.SetActive(false);
-            }
-        }
-
-        public bool HasBox()
-        {
-            return visualBox != null && visualBox.activeSelf;
-        }
+        public bool HasBox() { return visualBox != null && visualBox.activeSelf; }
+        
     }
 }

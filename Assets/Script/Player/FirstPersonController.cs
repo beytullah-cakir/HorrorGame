@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DialogueSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
@@ -50,6 +51,8 @@ public class FirstPersonController : MonoBehaviour
     private Vector2 _lookInput;
     private bool _jumpInput;
     private bool _sprintInput;
+    private int _lockCount = 0;
+    private bool IsLocked => _lockCount > 0;
 
     private void Awake()
     {
@@ -66,11 +69,15 @@ public class FirstPersonController : MonoBehaviour
     private void OnEnable()
     {
         _inputSystem.Player.Enable();
+        DialogueManager.OnDialogueStarted += LockPlayer;
+        DialogueManager.OnDialogueFinished += UnlockPlayer;
     }
 
     private void OnDisable()
     {
         _inputSystem.Player.Disable();
+        DialogueManager.OnDialogueStarted -= LockPlayer;
+        DialogueManager.OnDialogueFinished -= UnlockPlayer;
     }
 
     private void Update()
@@ -88,12 +95,24 @@ public class FirstPersonController : MonoBehaviour
 
     private void ReadInput()
     {
+        if (IsLocked)
+        {
+            _moveInput = Vector2.zero;
+            _lookInput = Vector2.zero;
+            _jumpInput = false;
+            _sprintInput = false;
+            return;
+        }
+
         // Read input values directly from the generated class instance
         _moveInput = _inputSystem.Player.Move.ReadValue<Vector2>();
         _lookInput = _inputSystem.Player.Look.ReadValue<Vector2>();
         _jumpInput = _inputSystem.Player.Jump.WasPressedThisFrame();
         _sprintInput = _inputSystem.Player.Sprint.IsPressed();
     }
+
+    public void LockPlayer() { _lockCount++; }
+    public void UnlockPlayer() { _lockCount = Mathf.Max(0, _lockCount - 1); }
 
     private void GroundCheck()
     {

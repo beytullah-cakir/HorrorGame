@@ -16,11 +16,7 @@ namespace QuestSystem
         public bool triggerOnce = true;
         public bool isInteractableTrigger = false;
         private bool hasTriggered = false;
-
-        protected override void Awake()
-        {
-            base.Awake();
-        }
+        
 
         private void OnTriggerEnter(Collider other)
         {

@@ -10,16 +10,15 @@ public class DoorAnimatorController : InteractableBase
     [SerializeField] private float rotationSpeed = 5f;
     [Tooltip("Is the door currently locked?")]
     public bool isLocked = false;
-    [Tooltip("Check this if the door opens towards the player instead of away.")]
-    public bool invertRotation = false;
+    
     
     private bool _isOpen = false;
     private Quaternion _closedRotation;
     private Quaternion _targetRotation;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
+        
         _closedRotation = transform.localRotation;
         _targetRotation = _closedRotation;
     }
@@ -45,9 +44,7 @@ public class DoorAnimatorController : InteractableBase
             // If localPlayerPos.z is positive, player is in front of the door's Z axis
             // We flip the rotation to open AWAY from the player
             float rotationSign = localPlayerPos.z >= 0 ? 1f : -1f;
-            
-            // Apply inversion if needed based on model axes
-            if (invertRotation) rotationSign *= -1f;
+           
 
             _targetRotation = _closedRotation * Quaternion.Euler(0, openRotationAngle * rotationSign, 0);
             _isOpen = true;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
   id: 
   title: "Salondaki e\u015Fyalar\u0131 topla"
-  state: 2
+  state: 0
   autoActivateNext: 1
   subTasks:
   - description: Aile Portresi

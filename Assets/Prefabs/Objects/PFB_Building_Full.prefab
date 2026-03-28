@@ -418,12 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344e99f3bea9d7947ba855b5e77092c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorAnimatorController
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 23000013747195312}
   openRotationAngle: 90
   rotationSpeed: 5
   isLocked: 0
-  invertRotation: 0
 --- !u!1 &1000010301788856
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,12 +1055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344e99f3bea9d7947ba855b5e77092c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorAnimatorController
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 23000011440731008}
   openRotationAngle: 90
   rotationSpeed: 5
   isLocked: 0
-  invertRotation: 1
 --- !u!1 &1000010583632514
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,12 +1294,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344e99f3bea9d7947ba855b5e77092c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorAnimatorController
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 23000011589889232}
-  openRotationAngle: 90
+  openRotationAngle: -90
   rotationSpeed: 5
   isLocked: 0
-  invertRotation: 1
 --- !u!1 &1000010596514064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2249,6 +2240,7 @@ GameObject:
   - component: {fileID: 33000012596811598}
   - component: {fileID: 23000012840362872}
   - component: {fileID: 64000013191299976}
+  - component: {fileID: 6347770077310063375}
   m_Layer: 8
   m_Name: draw04
   m_TagString: Untagged
@@ -2346,9 +2338,26 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300016, guid: e41b6552046814b19a9905c4f669429b, type: 3}
+--- !u!114 &6347770077310063375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010766857948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c145a0e3b18474f9aa666a45ea0974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DrawerController
+  movementAxis: 2
+  openDistance: 0.4
+  slideSpeed: 5
+  requiredQuest: {fileID: 11400000, guid: 60bd171183f179648b900f524ebc03d8, type: 2}
+  ignoreQuestRequirement: 1
 --- !u!1 &1000010801297074
 GameObject:
   m_ObjectHideFlags: 0
@@ -4314,7 +4323,7 @@ GameObject:
   - component: {fileID: 33000010165982246}
   - component: {fileID: 23000010269359610}
   - component: {fileID: 65000011455671700}
-  - component: {fileID: 618410331445628059}
+  - component: {fileID: 3278018204740132118}
   m_Layer: 8
   m_Name: DoorSingle
   m_TagString: Untagged
@@ -4414,7 +4423,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.15, y: 2.5, z: 0.12051574}
   m_Center: {x: 0.57528025, y: 1.26, z: 0}
---- !u!114 &618410331445628059
+--- !u!114 &3278018204740132118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4423,15 +4432,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011272134668}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344e99f3bea9d7947ba855b5e77092c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 61c001fd132f3f245b3fab235327d03c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DoorAnimatorController
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 23000010269359610}
+  m_EditorClassIdentifier: Assembly-CSharp::QuestLockedDoorController
   openRotationAngle: 90
   rotationSpeed: 5
-  isLocked: 0
-  invertRotation: 0
+  isLocked: 1
+  triggerQuest: {fileID: 11400000, guid: f0d8e5b368d58c841ad8971b5fef57ee, type: 2}
+  lockedDialogue:
+    text: "Bu kap\u0131 nede kilitli. Anahtar\u0131 nerede acaba?"
+    voiceClip: {fileID: 0}
+    useTypewriter: 1
+  completeQuestOnDialogueFinish: 1
 --- !u!1 &1000011296566088
 GameObject:
   m_ObjectHideFlags: 0
@@ -6278,12 +6290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344e99f3bea9d7947ba855b5e77092c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorAnimatorController
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 23000012693112450}
   openRotationAngle: 90
   rotationSpeed: 5
   isLocked: 0
-  invertRotation: 0
 --- !u!1 &1000011981866200
 GameObject:
   m_ObjectHideFlags: 0
@@ -11316,12 +11325,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344e99f3bea9d7947ba855b5e77092c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorAnimatorController
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 23000011598784354}
   openRotationAngle: 90
   rotationSpeed: 5
   isLocked: 0
-  invertRotation: 0
 --- !u!65 &1018727853039301364
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12963,8 +12969,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95eb6582892f9594286051021100275e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.QuestItem
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 9058202441843403341}
   requiredQuest: {fileID: 11400000, guid: 70a7fbd5e356bb6419ca9af237d5b53d, type: 2}
   completeSubTask: 1
   subTaskIndex: 1
@@ -13095,8 +13099,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95eb6582892f9594286051021100275e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.QuestItem
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 5513234373181627922}
   requiredQuest: {fileID: 11400000, guid: 70a7fbd5e356bb6419ca9af237d5b53d, type: 2}
   completeSubTask: 1
   subTaskIndex: 0
@@ -14129,6 +14131,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3307674527469902194, guid: eded3844e29c2ec40bc278e2cbd31279, type: 3}
+      propertyPath: subTaskIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307674527469902194, guid: eded3844e29c2ec40bc278e2cbd31279, type: 3}
+      propertyPath: requiredQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: d8bd8e34edb448144927dc08b386af6a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14286,8 +14296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95eb6582892f9594286051021100275e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.QuestItem
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 6411614119271771336}
   requiredQuest: {fileID: 11400000, guid: d8bd8e34edb448144927dc08b386af6a, type: 2}
   completeSubTask: 1
   subTaskIndex: 0
@@ -14297,11 +14305,6 @@ MonoBehaviour:
 --- !u!4 &6393688907130775966 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4962838275866674, guid: 356b1d37aedb571479e6cff7bda80568, type: 3}
-  m_PrefabInstance: {fileID: 6389292319624948140}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &6411614119271771336 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 23066177789150564, guid: 356b1d37aedb571479e6cff7bda80568, type: 3}
   m_PrefabInstance: {fileID: 6389292319624948140}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6428186397612568961

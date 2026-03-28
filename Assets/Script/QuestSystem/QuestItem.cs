@@ -5,7 +5,7 @@ namespace QuestSystem
     public class QuestItem : InteractableBase
     {
         [Header("Collection Settings")]
-        [SerializeField] private Quest requiredQuest; // This item can only be collected if this quest is active
+        [SerializeField] private Quest requiredQuest;
         [SerializeField] private bool completeSubTask = true;
         [SerializeField] private int subTaskIndex = 0;
         [SerializeField] private bool interactToCollect = true;
@@ -64,7 +64,7 @@ namespace QuestSystem
             // Show the box in hand when an item is picked up
             if (PlayerCarryController.Instance != null)
             {
-                PlayerCarryController.Instance.ShowBox();
+                PlayerCarryController.Instance.ShowBox(true);
             }
 
             if (collectEffect != null)

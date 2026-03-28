@@ -4,12 +4,11 @@ using UnityEngine.InputSystem;
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Interaction Settings")]
-    [Tooltip("The camera used for raycasting. Usually Main Camera.")]
-    public Camera playerCamera;
+    
+    private Camera playerCamera;
     [Tooltip("The max distance to interact with objects.")]
     public float interactionDistance = 3.0f;
-    [Tooltip("The UI GameObject showing the 'E' prompt.")]
-    public GameObject interactionPromptUI;
+    
     [Tooltip("The crosshair RectTransform in the center of the screen.")]
     public RectTransform crosshairRect;
 
@@ -27,6 +26,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         _inputSystem = new PlayerInputSystem();
         if (crosshairRect != null) _currentCrosshairScale = Vector3.one * normalScale;
+        playerCamera = Camera.main;
     }
 
     private void OnEnable()
@@ -44,7 +44,7 @@ public class PlayerInteraction : MonoBehaviour
         
         if (_currentInteractable != null)
         {
-            _currentInteractable.OnHoverExit();
+            
             _currentInteractable = null;
         }
     }
@@ -84,23 +84,17 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactionDistance))
         {
-            // Debug.DrawRay(ray.origin, ray.direction * interactionDistance, Color.green); // Görsel test için
+            
             IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
 
             if (interactable != null)
             {
                 if (interactable != _currentInteractable)
                 {
-                    if (_currentInteractable != null) _currentInteractable.OnHoverExit();
                     _currentInteractable = interactable;
-                    _currentInteractable.OnHoverEnter();
                 }
                 
-                // Sadece etkileşim mümkünse E yazısını göster
-                if (interactionPromptUI != null) 
-                {
-                    interactionPromptUI.SetActive(interactable.CanInteract());
-                }
+                
             }
             else
             {
@@ -117,13 +111,8 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (_currentInteractable != null)
         {
-            _currentInteractable.OnHoverExit();
+            
             _currentInteractable = null;
-        }
-
-        if (interactionPromptUI != null)
-        {
-            interactionPromptUI.SetActive(false);
         }
     }
 }

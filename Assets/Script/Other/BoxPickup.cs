@@ -10,7 +10,7 @@ namespace QuestSystem
         [SerializeField] private Quest requiredQuest; 
         
         [Header("Effects")]
-        [SerializeField] private GameObject pickupEffect;
+        
         [SerializeField] private AudioClip pickupSound;
 
         public override void Interact()
@@ -29,15 +29,13 @@ namespace QuestSystem
             // Eldeki kutuyu görünür yap
             if (PlayerCarryController.Instance != null)
             {
-                PlayerCarryController.Instance.ShowBox();
+                PlayerCarryController.Instance.ShowBox(true);
             }
 
             // Efekt ve Ses
-            if (pickupEffect != null) Instantiate(pickupEffect, transform.position, Quaternion.identity);
             if (pickupSound != null) AudioSource.PlayClipAtPoint(pickupSound, transform.position);
 
-            // Yerden bu kutuyu SİL
-            OnHoverExit(); 
+            
             Destroy(gameObject);
         }
     }

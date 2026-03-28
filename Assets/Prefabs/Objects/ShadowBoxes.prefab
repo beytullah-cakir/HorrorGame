@@ -454,8 +454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8c15b96f054914ca40724f8098a137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.BoxPlacementGhost
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 5769889459454833061}
   requiredQuest: {fileID: 11400000, guid: d8bd8e34edb448144927dc08b386af6a, type: 2}
   filledMaterial: {fileID: 2100000, guid: 6c950fce69ff8854491de81530dec1ad, type: 2}
 --- !u!1 &2072007389051904072
@@ -747,8 +745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a8c15b96f054914ca40724f8098a137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.BoxPlacementGhost
-  highlightMaterial: {fileID: 2100000, guid: aa742ab2158611248912dbd63937332c, type: 2}
-  targetRenderer: {fileID: 3360341051781184772}
   requiredQuest: {fileID: 11400000, guid: 70a7fbd5e356bb6419ca9af237d5b53d, type: 2}
   filledMaterial: {fileID: 2100000, guid: 6c950fce69ff8854491de81530dec1ad, type: 2}
 --- !u!1 &4046360368365235351
