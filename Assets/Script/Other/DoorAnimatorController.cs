@@ -10,7 +10,10 @@ public class DoorAnimatorController : InteractableBase
     [SerializeField] private float rotationSpeed = 5f;
     [Tooltip("Is the door currently locked?")]
     public bool isLocked = false;
-    
+
+    [Header("Audio Settings")]
+    public AudioClip doorSound;
+    public AudioClip doorLockedSound;
     
     private bool _isOpen = false;
     private Quaternion _closedRotation;
@@ -33,11 +36,16 @@ public class DoorAnimatorController : InteractableBase
     {
         if (isLocked)
         {
+            if (AudioManager.Instance != null && doorLockedSound != null)
+                AudioManager.Instance.PlaySFXAtPosition(doorLockedSound, transform.position);
             return;
         }
 
         if (!_isOpen)
         {
+            if (AudioManager.Instance != null && doorSound != null)
+                AudioManager.Instance.PlaySFXAtPosition(doorSound, transform.position);
+
             // Get player position relative to the door's local space
             Vector3 localPlayerPos = transform.InverseTransformPoint(Camera.main.transform.position);
             
@@ -51,6 +59,9 @@ public class DoorAnimatorController : InteractableBase
         }
         else
         {
+            if (AudioManager.Instance != null && doorSound != null)
+                AudioManager.Instance.PlaySFXAtPosition(doorSound, transform.position);
+
             _targetRotation = _closedRotation;
             _isOpen = false;
         }

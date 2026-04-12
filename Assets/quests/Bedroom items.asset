@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4333e253832104ab345e78c82fa756, type: 3}
   m_Name: Bedroom items
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
-  id: 1
   title: "Yatak odas\u0131ndaki e\u015Fyalar\u0131 topla"
-  state: 1
+  state: 2
   autoActivateNext: 1
   subTasks:
   - description: Cep Saati

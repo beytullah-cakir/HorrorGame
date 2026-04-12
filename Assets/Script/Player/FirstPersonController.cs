@@ -8,8 +8,6 @@ public class FirstPersonController : MonoBehaviour
     [Header("Movement Stats")]
     [Tooltip("Move speed in meters/second")]
     public float moveSpeed = 4.0f;
-    [Tooltip("Sprint speed in meters/second")]
-    public float sprintSpeed = 6.0f;
     [Tooltip("Rotation speed for the camera mouse look.")]
     public float rotationSpeed = 1.0f;
     [Tooltip("The force applied when jumping")]
@@ -33,10 +31,15 @@ public class FirstPersonController : MonoBehaviour
     [Tooltip("What layers the character uses as ground")]
     public LayerMask groundLayers;
 
-    // Cinemachine
     [Header("Cinemachine")]
     [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
     public GameObject cinemachineCameraTarget;
+
+    [Header("Footsteps")]
+    [Tooltip("The audio source that will play footstep sounds")]
+    public AudioSource footstepAudioSource;
+    [Tooltip("How often to play a footstep sound while walking")]
+    public float footstepFrequency = 0.5f;
 
     // Internal variables
     private CharacterController _controller;
@@ -45,14 +48,20 @@ public class FirstPersonController : MonoBehaviour
     private float _rotationVelocity;
     private Vector3 _verticalVelocity;
     private float _terminalVelocity = 53.0f;
+    private float _footstepTimer = 0.0f;
 
     // Input values
     private Vector2 _moveInput;
     private Vector2 _lookInput;
     private bool _jumpInput;
-    private bool _sprintInput;
     private int _lockCount = 0;
-    private bool IsLocked => _lockCount > 0;
+    public bool isTimelinePlaying = false;
+    private bool IsLocked => _lockCount > 0 || isTimelinePlaying;
+
+    public void SetTimelineState(bool active)
+    {
+        isTimelinePlaying = active;
+    }
 
     private void Awake()
     {
@@ -95,20 +104,27 @@ public class FirstPersonController : MonoBehaviour
 
     private void ReadInput()
     {
-        if (IsLocked)
+        if (isTimelinePlaying)
         {
             _moveInput = Vector2.zero;
             _lookInput = Vector2.zero;
             _jumpInput = false;
-            _sprintInput = false;
             return;
         }
 
-        // Read input values directly from the generated class instance
-        _moveInput = _inputSystem.Player.Move.ReadValue<Vector2>();
+        // Always read look input so the player can look around even if move is locked (during dialogues)
         _lookInput = _inputSystem.Player.Look.ReadValue<Vector2>();
+
+        if (IsLocked)
+        {
+            _moveInput = Vector2.zero;
+            _jumpInput = false;
+            return;
+        }
+
+        // Read movement input values directly from the generated class instance
+        _moveInput = _inputSystem.Player.Move.ReadValue<Vector2>();
         _jumpInput = _inputSystem.Player.Jump.WasPressedThisFrame();
-        _sprintInput = _inputSystem.Player.Sprint.IsPressed();
     }
 
     public void LockPlayer() { _lockCount++; }
@@ -149,8 +165,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void Move()
     {
-        // set target speed based on move speed, sprint speed and if sprint is pressed
-        float targetSpeed = _sprintInput ? sprintSpeed : moveSpeed;
+        // set target speed based on move speed
+        float targetSpeed = moveSpeed;
 
         // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -171,6 +187,25 @@ public class FirstPersonController : MonoBehaviour
 
         // move the player
         _controller.Move(inputDirection.normalized * (targetSpeed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity.y, 0.0f) * Time.deltaTime);
+
+        HandleFootsteps(targetSpeed);
+    }
+
+    private void HandleFootsteps(float speed)
+    {
+        if (!grounded || _moveInput == Vector2.zero) return;
+
+        _footstepTimer -= Time.deltaTime;
+
+        if (_footstepTimer <= 0)
+        {
+            if (footstepAudioSource != null && footstepAudioSource.clip != null)
+            {
+                footstepAudioSource.PlayOneShot(footstepAudioSource.clip);
+            }
+
+            _footstepTimer = footstepFrequency;
+        }
     }
 
     private void JumpAndGravity()
