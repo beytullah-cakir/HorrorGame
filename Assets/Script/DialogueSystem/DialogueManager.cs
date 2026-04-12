@@ -65,6 +65,8 @@ namespace DialogueSystem
 
             if (!isPlaying)
             {
+                isPlaying = true;
+                OnDialogueStarted?.Invoke();
                 ProcessQueue();
             }
         }
@@ -86,8 +88,6 @@ namespace DialogueSystem
 
         private IEnumerator ShowDialogue(DialogueLine line)
         {
-            isPlaying = true;
-            OnDialogueStarted?.Invoke();
 
             // Set text and start fading in
             subtitleText.text = line.useTypewriter ? "" : line.text;
