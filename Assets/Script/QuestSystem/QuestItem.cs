@@ -9,6 +9,7 @@ namespace QuestSystem
         [SerializeField] private bool completeSubTask = true;
         [SerializeField] private int subTaskIndex = 0;
         [SerializeField] private bool interactToCollect = true;
+        [SerializeField] private bool requiresBox = true;
         
         [Header("Effects")]
         [SerializeField] private GameObject collectEffect;
@@ -27,10 +28,13 @@ namespace QuestSystem
                 return;
             }
 
-            // 2. Kutu kontrolü
-            if (PlayerCarryController.Instance == null || !PlayerCarryController.Instance.HasBox())
+            
+            if (requiresBox)
             {
-                return;
+                if (PlayerCarryController.Instance == null || !PlayerCarryController.Instance.HasBox())
+                {
+                    return;
+                }
             }
 
             if (interactToCollect)
@@ -61,8 +65,8 @@ namespace QuestSystem
                 QuestManager.Instance.CompleteCurrentQuest();
             }
 
-            // Show the box in hand when an item is picked up
-            if (PlayerCarryController.Instance != null)
+            
+            if (PlayerCarryController.Instance != null && requiresBox)
             {
                 PlayerCarryController.Instance.ShowBox(true);
             }

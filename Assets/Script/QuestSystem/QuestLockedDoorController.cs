@@ -16,7 +16,7 @@ public class QuestLockedDoorController : DoorAnimatorController
 
     public override void Interact()
     {
-        // Eğer kapı kilitliyse ve bu özel görev tetiklenmemişse kontrol et
+        isLocked = !Key.Instance.hasKey;
         if (isLocked && !_isQuestTriggered)
         {
             Quest activeQuest = QuestManager.Instance.GetActiveQuest();

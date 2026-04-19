@@ -78,15 +78,11 @@ public class FirstPersonController : MonoBehaviour
     private void OnEnable()
     {
         _inputSystem.Player.Enable();
-        DialogueManager.OnDialogueStarted += LockPlayer;
-        DialogueManager.OnDialogueFinished += UnlockPlayer;
     }
 
     private void OnDisable()
     {
         _inputSystem.Player.Disable();
-        DialogueManager.OnDialogueStarted -= LockPlayer;
-        DialogueManager.OnDialogueFinished -= UnlockPlayer;
     }
 
     private void Update()

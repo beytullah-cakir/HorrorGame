@@ -8,9 +8,9 @@ namespace QuestSystem
         [Header("Quest Condition")]
         [Tooltip("Bu kutu sadece bu görev aktifken alınabilir. (Boş bırakılırsa her zaman alınabilir)")]
         [SerializeField] private Quest requiredQuest; 
-        
+        [SerializeField] private int subTaskIndex = 0;
+
         [Header("Effects")]
-        
         [SerializeField] private AudioClip pickupSound;
 
         public override void Interact()
@@ -26,16 +26,17 @@ namespace QuestSystem
 
         private void Pickup()
         {
-            // Eldeki kutuyu görünür yap
+            QuestManager.Instance.CompleteCurrentQuest();
+
+           
             if (PlayerCarryController.Instance != null)
             {
                 PlayerCarryController.Instance.ShowBox(true);
             }
 
-            // Efekt ve Ses
+            
             if (pickupSound != null) AudioSource.PlayClipAtPoint(pickupSound, transform.position);
 
-            
             Destroy(gameObject);
         }
     }

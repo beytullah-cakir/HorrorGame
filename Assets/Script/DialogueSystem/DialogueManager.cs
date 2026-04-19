@@ -12,7 +12,7 @@ namespace DialogueSystem
         [TextArea(3, 10)]
         public string text;
         public AudioClip voiceClip;
-        public bool useTypewriter = true;
+        public bool useTypewriter = false;
     }
 
     public class DialogueManager : MonoBehaviour
@@ -23,8 +23,7 @@ namespace DialogueSystem
         [SerializeField] private TMP_Text subtitleText;
         [SerializeField] private CanvasGroup dialogueCanvasGroup;
 
-        [Header("Audio References")]
-        [SerializeField] private AudioSource audioSource;
+        
 
         [Header("Settings")]
         [SerializeField] private float typewriterSpeed = 0.05f;
@@ -55,6 +54,9 @@ namespace DialogueSystem
             {
                 dialogueCanvasGroup.alpha = 0f;
             }
+
+            
+            if (subtitleText == null) subtitleText = GetComponentInChildren<TMP_Text>();
         }
 
         public void PlayDialogue(DialogueLine line)
@@ -95,40 +97,16 @@ namespace DialogueSystem
 
             // Start Audio
             float duration = 0f;
-            if (line.voiceClip != null)
-            {
-                audioSource.clip = line.voiceClip;
-                audioSource.Play();
-                duration = line.voiceClip.length;
-            }
-            else
-            {
-                // Fallback duration based on word count
+           
+                
                 string[] words = line.text.Split(' ');
                 duration = Mathf.Max(2f, words.Length * defaultDurationPerWord);
-            }
+            
 
-            // Typewriter or Immediate
-            if (line.useTypewriter)
-            {
-                yield return StartCoroutine(TypeText(line.text, duration));
-            }
-            else
-            {
-                subtitleText.text = line.text;
-                yield return new WaitForSeconds(duration);
-            }
-
-            // Wait for audio to finish if it's longer than typewriter
-            if (audioSource.isPlaying)
-            {
-                while (audioSource.isPlaying)
-                {
-                    yield return null;
-                }
-            }
-
-            // Handle next dialogue or finish
+            // Display text immediately
+            subtitleText.text = line.text;
+            yield return new WaitForSeconds(duration);
+            
             ProcessQueue();
         }
 
@@ -167,7 +145,6 @@ namespace DialogueSystem
         public void StopAllDialogues()
         {
             if (dialogueCoroutine != null) StopCoroutine(dialogueCoroutine);
-            audioSource.Stop();
             dialogueQueue.Clear();
             isPlaying = false;
             StartCoroutine(FadeCanvasGroup(false));
