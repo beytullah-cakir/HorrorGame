@@ -3,13 +3,12 @@ using DialogueSystem;
 
 public class Jumpscare : MonoBehaviour
 {
-    [Header("References")]
     [SerializeField] private GameObject triggerArea;
-    
 
-    [Header("Settings")]
+    [SerializeField] private AudioSource jumpscareAudio;
+
     public float speed = 10f;
-    
+
     private bool isMoving = false;
 
     private void Start()
@@ -19,11 +18,16 @@ public class Jumpscare : MonoBehaviour
             TriggerArea triggerAreaComponent = triggerArea.GetComponent<TriggerArea>();
             triggerAreaComponent.onTriggered.AddListener(StartJumpscare);
         }
+        jumpscareAudio = GetComponent<AudioSource>();
     }
 
     private void StartJumpscare()
     {
         isMoving = true;
+
+
+        jumpscareAudio.Play();
+
     }
 
     private void Update()
@@ -38,8 +42,9 @@ public class Jumpscare : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            GameManager.Instance.TurnOffAllLights();
             Destroy(gameObject);
         }
-    } 
+    }
 
 }
