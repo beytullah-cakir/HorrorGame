@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4333e253832104ab345e78c82fa756, type: 3}
   m_Name: Hall items
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
-  id: 
   title: "Salondaki e\u015Fyalar\u0131 topla"
-  state: 0
+  state: 2
   autoActivateNext: 1
   subTasks:
   - description: Aile Portresi
     isCompleted: 0
+    targetCount: 0
+    currentCount: 0
   - description: Eski kaset
     isCompleted: 0
+    targetCount: 0
+    currentCount: 0

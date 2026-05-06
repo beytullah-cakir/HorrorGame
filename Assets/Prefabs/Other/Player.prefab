@@ -69,7 +69,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1921233876051261845}
-  - {fileID: 8973304963344736825}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2538527811714555984
@@ -211,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.PlayerCarryController
   visualBox: {fileID: 3918628406906788813}
-  itemHoldPoint: {fileID: 0}
+  itemHoldPoint: {fileID: 8973304963344736825}
 --- !u!95 &5294115400982909305
 Animator:
   serializedVersion: 7
@@ -742,6 +741,7 @@ Transform:
   m_Children:
   - {fileID: 7396004928863114368}
   - {fileID: 3430250788481082438}
+  - {fileID: 8973304963344736825}
   m_Father: {fileID: 8399809889431916564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2754942218424402462
@@ -1079,12 +1079,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8629705350747580037}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.4, z: 0.6}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3, y: -0.3, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8399809889431916564}
+  m_Father: {fileID: 1921233876051261845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8875067533758255313
 GameObject:

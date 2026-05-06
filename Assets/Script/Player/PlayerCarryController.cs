@@ -26,9 +26,12 @@ namespace QuestSystem
         private GameObject _currentCursedItem;
         private GameObject _currentSaltItem;
 
-        public void PickUpCursedItem(GameObject itemObj)
+        public int CurrentCursedItemSubTaskIndex { get; private set; } = -1;
+
+        public void PickUpCursedItem(GameObject itemObj, int subTaskIndex)
         {
             _currentCursedItem = itemObj;
+            CurrentCursedItemSubTaskIndex = subTaskIndex;
             AttachToHoldPoint(itemObj);
         }
 
@@ -55,6 +58,15 @@ namespace QuestSystem
         public bool HasSalt()
         {
             return _currentSaltItem != null;
+        }
+
+        public void DestroySaltItem()
+        {
+            if (_currentSaltItem != null)
+            {
+                Destroy(_currentSaltItem);
+                _currentSaltItem = null;
+            }
         }
 
         public SaltItem GetCurrentSaltItem()

@@ -59,7 +59,7 @@ namespace QuestSystem
                 string description = subTask.description;
                 if (subTask.targetCount > 0)
                 {
-                    description += $" ({subTask.currentCount}/{subTask.targetCount})";
+                    description += $" <size=80%>({subTask.currentCount}/{subTask.targetCount})</size>";
                 }
 
                 string content = subTask.CheckCompletion() ? $"<s>{description}</s>" : description;
@@ -79,8 +79,15 @@ namespace QuestSystem
 
         private void HandleQuestCompleted(Quest quest)
         {
-            if (questTitleText != null)
-                questTitleText.text = $"<alpha=#{completedAlpha}><s>{quest.title}</s>";
+            if (QuestManager.Instance.IsLastQuest())
+            {
+                ClearUI();
+            }
+            else
+            {
+                if (questTitleText != null)
+                    questTitleText.text = $"<alpha=#{completedAlpha}><s>{quest.title}</s>";
+            }
         }
 
         private void HandleSubTaskCompleted(Quest quest, int index)

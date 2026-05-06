@@ -18,7 +18,13 @@ MonoBehaviour:
   subTasks:
   - description: Cep Saati
     isCompleted: 0
+    targetCount: 0
+    currentCount: 0
   - description: Palto
     isCompleted: 0
+    targetCount: 0
+    currentCount: 0
   - description: "Aile Foto\u011Fraf\u0131"
     isCompleted: 0
+    targetCount: 0
+    currentCount: 0

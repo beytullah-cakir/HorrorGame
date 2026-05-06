@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4333e253832104ab345e78c82fa756, type: 3}
+  m_Name: CursedItems
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
+  title: "Lanetli e\u015Fyalar\u0131 bul ve yak"
+  state: 2
+  autoActivateNext: 1
+  subTasks:
+  - description: "Oyuncak ay\u0131"
+    isCompleted: 0
+    targetCount: 0
+    currentCount: 0
+  - description: "Rit\xFCel notlar\u0131"
+    isCompleted: 0
+    targetCount: 0
+    currentCount: 0
+  - description: "T\u0131ls\u0131m"
+    isCompleted: 0
+    targetCount: 0
+    currentCount: 0

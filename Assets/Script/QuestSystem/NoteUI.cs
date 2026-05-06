@@ -11,6 +11,8 @@ namespace QuestSystem
         [Header("UI Elements")]
         [SerializeField] private GameObject notePanel;
         [SerializeField] private Button closeButton;
+        
+        private System.Action _onCloseCallback;
 
         private void Awake()
         {
@@ -34,10 +36,14 @@ namespace QuestSystem
             }
         }
 
-        public void OpenNote()
+        public void OpenNote(System.Action onClose = null)
         {
             if (notePanel == null) return;
+            
+            // Eğer not zaten açıksa tekrar kilitleme işlemini yapma
+            if (notePanel.activeSelf) return;
 
+            _onCloseCallback = onClose;
             notePanel.SetActive(true);
             
             // Oyuncu hareketini ve kamera hareketini kilitle
@@ -46,7 +52,7 @@ namespace QuestSystem
                 FirstPersonController.Instance.LockPlayerAll();
             }
 
-            // Mouse imlecini gizle ve kilitle (Kullanıcı isteği üzerine)
+            // Mouse imlecini her durumda gizli ve kilitli tut
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -63,17 +69,21 @@ namespace QuestSystem
                 FirstPersonController.Instance.UnlockPlayerAll();
             }
 
-            // Mouse imlecini gizli tutmaya devam et (FPS oyunlarında genellikle böyledir)
+            // Mouse imlecini gizle ve kilitle (FPS moduna geri dön)
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            // Kapatma callback'ini çalıştır
+            _onCloseCallback?.Invoke();
+            _onCloseCallback = null;
         }
 
         private void Update()
         {
-            // ESC tuşu kontrolü (New Input System)
+            // Sağ tık kontrolü (Notu kapatmak için)
             if (notePanel != null && notePanel.activeSelf)
             {
-                if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+                if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
                 {
                     CloseNote();
                 }

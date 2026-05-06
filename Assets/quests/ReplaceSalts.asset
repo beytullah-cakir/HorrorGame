@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ReplaceSalts
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
   title: "Tuzlar\u0131 yerle\u015Ftir"
-  state: 0
+  state: 2
   autoActivateNext: 1
   subTasks:
   - description: 
-    isCompleted: 0
+    isCompleted: 1
     targetCount: 4
     currentCount: 0

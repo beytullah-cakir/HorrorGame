@@ -1,17 +1,11 @@
 using QuestSystem;
 using UnityEngine;
 
-public class Flashlight : QuestItem
+public class Flashlight : InteractableBase
 {
-    private void Awake()
-    {
-        // Fener toplamak için kutu gerekmesin
-        requiresBox = false;
-    }
-
     public override void Interact()
     {
         FlashlightController.Instance.EnableFlashlight();
-        base.Interact();
+        Destroy(gameObject);
     }
 }

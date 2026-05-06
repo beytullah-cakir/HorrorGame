@@ -54,8 +54,8 @@ public class PlayerInteraction : MonoBehaviour
         CheckForInteractable();
         HandleCrosshairScale();
 
-        // E tuşuna basılıp basılmadığını Update içinde kontrol et
-        if (_inputSystem.Player.Interact.WasPressedThisFrame())
+        // Sol tık basılıp basılmadığını kontrol et (Eski E tuşu yerine)
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (_currentInteractable != null)
             {

@@ -146,6 +146,11 @@ namespace QuestSystem
             return q.state == QuestState.Active ? q : null;
         }
 
+        public bool IsLastQuest()
+        {
+            return currentQuestIndex >= quests.Count - 1;
+        }
+
         #region Save/Load System Ready
         
         public int GetCurrentQuestIndex() => currentQuestIndex;

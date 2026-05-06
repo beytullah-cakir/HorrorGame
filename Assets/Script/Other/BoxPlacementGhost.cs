@@ -8,9 +8,11 @@ namespace QuestSystem
         [Header("Quest Activation")]
         [SerializeField] private Quest requiredQuest;
 
-        [Header("Material Settings")]
         [Tooltip("Kutu yerleştirilince şeffaf kutunun dönüşeceği normal materyal.")]
         [SerializeField] private Material filledMaterial;
+
+        [Header("Audio Settings")]
+        [SerializeField] private bool playScreamOnPlace = false;
         
         private bool _isActivated = false;
         private bool _isPlaced = false;
@@ -81,6 +83,12 @@ namespace QuestSystem
 
             // 4. Görevi tamamla
             QuestManager.Instance.CompleteCurrentQuest();
+
+            
+            if (playScreamOnPlace)
+            {
+                AudioManager.Instance.PlayDemonicScream();
+            }
 
             this.enabled = false; 
         }

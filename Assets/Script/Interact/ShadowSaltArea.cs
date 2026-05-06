@@ -12,7 +12,7 @@ namespace QuestSystem
 
         [Header("Salt Settings")]
         [SerializeField] private bool requiresSaltInInventory = true;
-        
+        [SerializeField] private Material pouredMaterial;
 
         [Header("Events")]
         public UnityEvent onSaltPoured;
@@ -84,12 +84,26 @@ namespace QuestSystem
             if (completeSubTaskOnPour && QuestManager.Instance != null)
             {
                 QuestManager.Instance.CompleteSubTask(subTaskIndex);
+
+                // Eğer tüm tuzlar serpildi ve görev bittiyse elimizdeki tuz objesini yok et
+                Quest activeQuest = QuestManager.Instance.GetActiveQuest();
+                if (activeQuest == null || activeQuest.state == QuestState.Completed)
+                {
+                    if (PlayerCarryController.Instance != null)
+                    {
+                        PlayerCarryController.Instance.DestroySaltItem();
+                    }
+                }
             }
 
             onSaltPoured?.Invoke();
             
-            // Tuz serpildikten sonra gölge alanı inaktif yapılır
-            if (_meshRenderer != null) _meshRenderer.enabled = false;
+            // Tuz serpildikten sonra materyali değiştir
+            if (_meshRenderer != null && pouredMaterial != null)
+            {
+                _meshRenderer.material = pouredMaterial;
+                _meshRenderer.enabled = true;
+            }
             
             Collider col = GetComponent<Collider>();
             if (col != null)

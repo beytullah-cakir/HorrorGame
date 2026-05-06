@@ -32,16 +32,25 @@ namespace QuestSystem
 
         private void BurnCursedItem()
         {
-            // Lanetli eşyayı elimizden al
+            // Yakacağımız eşyanın hafızadaki subtask indeksini al
+            int indexToComplete = subTaskIndex; // Varsayılan olarak Inspector'daki değer
             if (PlayerCarryController.Instance != null)
             {
+                int savedIndex = PlayerCarryController.Instance.CurrentCursedItemSubTaskIndex;
+                if (savedIndex >= 0)
+                {
+                    indexToComplete = savedIndex;
+                }
+                
+                // Lanetli eşyayı elimizden al
                 PlayerCarryController.Instance.DestroyCursedItem();
             }
 
-            // Görev alt görevini tamamla (isteğe bağlı)
+            // Görev alt görevini tamamla
             if (completeSubTaskOnBurn && QuestManager.Instance != null)
             {
-                QuestManager.Instance.CompleteSubTask(subTaskIndex);
+                Debug.Log($"[FireArea] Ateşe atıldı. Tamamlanan Subtask Index: {indexToComplete}");
+                QuestManager.Instance.CompleteSubTask(indexToComplete);
             }
 
             // Efektleri oynat

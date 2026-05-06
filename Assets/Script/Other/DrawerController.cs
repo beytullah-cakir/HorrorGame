@@ -13,12 +13,6 @@ public class DrawerController : InteractableBase
     [Tooltip("How fast the drawer slides.")]
     [SerializeField] private float slideSpeed = 5f;
 
-    [Header("Quest Requirements")]
-    [Tooltip("The quest that must be active to interact with this drawer.")]
-    [SerializeField] private Quest requiredQuest;
-    [Tooltip("If true, the drawer can be interacted with even if no quest is active (for testing or general use).")]
-    [SerializeField] private bool ignoreQuestRequirement = false;
-
     private bool _isOpen = false;
     private Vector3 _closedPosition;
     private Vector3 _targetPosition;
@@ -37,13 +31,7 @@ public class DrawerController : InteractableBase
 
     public override bool CanInteract()
     {
-        if (ignoreQuestRequirement || requiredQuest == null)
-        {
-            return true;
-        }
-
-        Quest activeQuest = QuestManager.Instance.GetActiveQuest();
-        return activeQuest == requiredQuest;
+        return true;
     }
 
     public override void Interact()

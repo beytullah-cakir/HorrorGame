@@ -2,38 +2,47 @@ using UnityEngine;
 
 namespace QuestSystem
 {
-    public class CursedItem : InteractableBase
+    public class CursedItem : QuestItem
     {
+        private void Awake()
+        {
+            // Lanetli eşyalar kutu gerektirmez ve yerden alındığında hemen yok olmaz (oyuncuya bağlanır)
+            requiresBox = false;
+            destroyOnCollect = false;
+        }
 
         public override void Interact()
         {
             if (PlayerCarryController.Instance != null && PlayerCarryController.Instance.HasCursedItem())
             {
-                // Zaten elimizde lanetli bir eşya var, başka alamayız
                 Debug.Log("Zaten bir lanetli eşya taşıyorsun!");
                 return;
             }
 
-            Collect();
+            base.Interact();
         }
 
         public override bool CanInteract()
         {
-            // Sadece elimizde lanetli eşya yoksa etkileşime girebiliriz
+            // Elimizde zaten bir eşya varsa etkileşime giremeyiz
             if (PlayerCarryController.Instance != null && PlayerCarryController.Instance.HasCursedItem())
             {
                 return false;
             }
-            return true;
+
+            return base.CanInteract();
         }
 
-        private void Collect()
+        public override void Collect()
         {
+            // Yerden alırken görev sistemini tetikleme! 
+            // Görev sadece ateşe atınca ilerleyecek.
+
+            // Eşyayı oyuncunun eline ver ve bu eşyanın subtask bilgisini PlayerCarryController'a kaydet
             if (PlayerCarryController.Instance != null)
             {
-                PlayerCarryController.Instance.PickUpCursedItem(this.gameObject);
+                PlayerCarryController.Instance.PickUpCursedItem(this.gameObject, GetSubTaskIndex());
             }
-
         }
     }
 }

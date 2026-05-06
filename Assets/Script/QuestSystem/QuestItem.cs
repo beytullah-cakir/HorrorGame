@@ -47,7 +47,12 @@ namespace QuestSystem
             return requiredQuest == null || activeQuest == requiredQuest;
         }
 
-        public void Collect()
+        public int GetSubTaskIndex()
+        {
+            return subTaskIndex;
+        }
+
+        public virtual void Collect()
         {
             if (completeSubTask)
             {
