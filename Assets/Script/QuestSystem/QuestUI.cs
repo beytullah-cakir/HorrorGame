@@ -56,10 +56,15 @@ namespace QuestSystem
             StringBuilder sb = new StringBuilder();
             foreach (var subTask in activeQuest.subTasks)
             {
+                string description = subTask.description;
+                if (subTask.targetCount > 0)
+                {
+                    description += $" ({subTask.currentCount}/{subTask.targetCount})";
+                }
+
+                string content = subTask.CheckCompletion() ? $"<s>{description}</s>" : description;
                 
-                string content = subTask.isCompleted ? $"<s>{subTask.description}</s>" : subTask.description;
-                
-                if (subTask.isCompleted)
+                if (subTask.CheckCompletion())
                 {
                     sb.AppendLine($"<alpha=#{completedAlpha}>{content}");
                 }

@@ -95,9 +95,22 @@ namespace QuestSystem
                 return;
             }
 
-            if (activeQuest.subTasks[subTaskIndex].isCompleted) return;
+            SubTask subTask = activeQuest.subTasks[subTaskIndex];
+            
+            if (subTask.CheckCompletion()) return;
 
-            activeQuest.subTasks[subTaskIndex].isCompleted = true;
+            if (subTask.targetCount > 0)
+            {
+                subTask.currentCount++;
+                if (subTask.currentCount >= subTask.targetCount)
+                {
+                    subTask.isCompleted = true;
+                }
+            }
+            else
+            {
+                subTask.isCompleted = true;
+            }
             
             OnSubTaskCompleted?.Invoke(activeQuest, subTaskIndex);
 

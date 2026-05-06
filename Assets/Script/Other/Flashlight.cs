@@ -3,10 +3,15 @@ using UnityEngine;
 
 public class Flashlight : QuestItem
 {
-    public GameObject flashlight;
+    private void Awake()
+    {
+        // Fener toplamak için kutu gerekmesin
+        requiresBox = false;
+    }
+
     public override void Interact()
     {
-        flashlight.SetActive(true);
+        FlashlightController.Instance.EnableFlashlight();
         base.Interact();
     }
 }

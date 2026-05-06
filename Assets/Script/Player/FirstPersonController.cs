@@ -5,6 +5,8 @@ using DialogueSystem;
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
+    public static FirstPersonController Instance;
+
     [Header("Movement Stats")]
     [Tooltip("Move speed in meters/second")]
     public float moveSpeed = 4.0f;
@@ -55,8 +57,10 @@ public class FirstPersonController : MonoBehaviour
     private Vector2 _lookInput;
     private bool _jumpInput;
     private int _lockCount = 0;
+    private int _fullLockCount = 0;
     public bool isTimelinePlaying = false;
     private bool IsLocked => _lockCount > 0 || isTimelinePlaying;
+    private bool IsFullyLocked => _fullLockCount > 0;
 
     public void SetTimelineState(bool active)
     {
@@ -65,6 +69,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         _controller = GetComponent<CharacterController>();
         _inputSystem = new PlayerInputSystem();
     }
@@ -100,7 +105,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void ReadInput()
     {
-        if (isTimelinePlaying)
+        if (isTimelinePlaying || IsFullyLocked)
         {
             _moveInput = Vector2.zero;
             _lookInput = Vector2.zero;
@@ -122,9 +127,8 @@ public class FirstPersonController : MonoBehaviour
         _moveInput = _inputSystem.Player.Move.ReadValue<Vector2>();
         _jumpInput = _inputSystem.Player.Jump.WasPressedThisFrame();
     }
-
-    public void LockPlayer() { _lockCount++; }
-    public void UnlockPlayer() { _lockCount = Mathf.Max(0, _lockCount - 1); }
+    public void LockPlayerAll() { _fullLockCount++; }
+    public void UnlockPlayerAll() { _fullLockCount = Mathf.Max(0, _fullLockCount - 1); }
 
     private void GroundCheck()
     {

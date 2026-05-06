@@ -15,11 +15,24 @@ namespace QuestSystem
     {
         public string description;
         public bool isCompleted;
+        
+        [Header("Counter Settings (Optional)")]
+        public int targetCount = 0; // If > 0, this task uses a counter
+        public int currentCount = 0;
 
         public SubTask(string description)
         {
             this.description = description;
             this.isCompleted = false;
+        }
+
+        public bool CheckCompletion()
+        {
+            if (targetCount > 0)
+            {
+                return currentCount >= targetCount;
+            }
+            return isCompleted;
         }
     }
 
@@ -38,7 +51,7 @@ namespace QuestSystem
             
             foreach (var subTask in subTasks)
             {
-                if (!subTask.isCompleted) return false;
+                if (!subTask.CheckCompletion()) return false;
             }
             return true;
         }

@@ -5,19 +5,12 @@ namespace QuestSystem
     public class QuestItem : InteractableBase
     {
         [Header("Collection Settings")]
-        [SerializeField] private Quest requiredQuest;
-        [SerializeField] private bool completeSubTask = true;
-        [SerializeField] private int subTaskIndex = 0;
-        [SerializeField] private bool interactToCollect = true;
-        [SerializeField] private bool requiresBox = true;
-        
-        [Header("Effects")]
-        [SerializeField] private GameObject collectEffect;
-        [SerializeField] private AudioClip collectSound;
-
-
-
-
+        [SerializeField] protected Quest requiredQuest;
+        [SerializeField] protected bool completeSubTask = true;
+        [SerializeField] protected int subTaskIndex = 0;
+        [SerializeField] protected bool interactToCollect = true;
+        [SerializeField] protected bool requiresBox = true;
+        [SerializeField] protected bool destroyOnCollect = true;
 
 
         public override void Interact()
@@ -48,7 +41,7 @@ namespace QuestSystem
             return IsQuestActive();
         }
 
-        private bool IsQuestActive()
+        protected bool IsQuestActive()
         {
             Quest activeQuest = QuestManager.Instance.GetActiveQuest();
             return requiredQuest == null || activeQuest == requiredQuest;
@@ -70,18 +63,10 @@ namespace QuestSystem
             {
                 PlayerCarryController.Instance.ShowBox(true);
             }
-
-            if (collectEffect != null)
+            if (destroyOnCollect)
             {
-                Instantiate(collectEffect, transform.position, Quaternion.identity);
+                Destroy(gameObject);
             }
-
-            if (collectSound != null)
-            {
-                AudioSource.PlayClipAtPoint(collectSound, transform.position);
-            }
-            
-            Destroy(gameObject);
         }
     }
 }

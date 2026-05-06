@@ -20,5 +20,65 @@ namespace QuestSystem
 
         public bool HasBox() { return visualBox != null && visualBox.activeSelf; }
         
+        [Header("Item Hold Settings")]
+        [SerializeField] private Transform itemHoldPoint;
+
+        private GameObject _currentCursedItem;
+        private GameObject _currentSaltItem;
+
+        public void PickUpCursedItem(GameObject itemObj)
+        {
+            _currentCursedItem = itemObj;
+            AttachToHoldPoint(itemObj);
+        }
+
+        public bool HasCursedItem()
+        {
+            return _currentCursedItem != null;
+        }
+
+        public void DestroyCursedItem()
+        {
+            if (_currentCursedItem != null)
+            {
+                Destroy(_currentCursedItem);
+                _currentCursedItem = null;
+            }
+        }
+
+        public void PickUpSaltItem(GameObject itemObj)
+        {
+            _currentSaltItem = itemObj;
+            AttachToHoldPoint(itemObj);
+        }
+
+        public bool HasSalt()
+        {
+            return _currentSaltItem != null;
+        }
+
+        public SaltItem GetCurrentSaltItem()
+        {
+            if (_currentSaltItem != null)
+            {
+                return _currentSaltItem.GetComponent<SaltItem>();
+            }
+            return null;
+        }
+
+        private void AttachToHoldPoint(GameObject itemObj)
+        {
+            if (itemHoldPoint == null) return;
+
+            Collider col = itemObj.GetComponent<Collider>();
+            if (col != null) col.enabled = false;
+
+            Rigidbody rb = itemObj.GetComponent<Rigidbody>();
+            if (rb != null) rb.isKinematic = true;
+
+            itemObj.transform.SetParent(itemHoldPoint);
+            itemObj.transform.localPosition = Vector3.zero;
+            itemObj.transform.localRotation = Quaternion.identity;
+        }
     }
 }
