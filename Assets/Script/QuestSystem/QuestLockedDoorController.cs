@@ -17,6 +17,7 @@ public class QuestLockedDoorController : DoorAnimatorController
     public override void Interact()
     {
         isLocked = !Key.Instance.hasKey;
+
         if (isLocked && !_isQuestTriggered)
         {
             Quest activeQuest = QuestManager.Instance.GetActiveQuest();
@@ -24,12 +25,16 @@ public class QuestLockedDoorController : DoorAnimatorController
             // Atanan görev aktifse diyaloğu başlat
             if (activeQuest != null && activeQuest == triggerQuest)
             {
+                // Kilitli sesini manuel çal (çünkü base.Interact çağrılmayacak)
+                if (doorLockedSound != null && AudioManager.Instance != null)
+                    AudioManager.Instance.PlaySFXAtPosition(doorLockedSound, transform.position);
+
                 TriggerQuestDialogue();
                 return;
             }
         }
 
-        // Normal kapı davranışı (kilitliyse açılmaz, değilse açılır)
+        // Normal kapı davranışı (kilitliyse sesi base.Interact çalacak)
         base.Interact();
     }
 

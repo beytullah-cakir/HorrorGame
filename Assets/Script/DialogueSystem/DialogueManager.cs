@@ -11,8 +11,6 @@ namespace DialogueSystem
     {
         [TextArea(3, 10)]
         public string text;
-        public AudioClip voiceClip;
-        public bool useTypewriter = false;
     }
 
     public class DialogueManager : MonoBehaviour
@@ -90,9 +88,6 @@ namespace DialogueSystem
 
         private IEnumerator ShowDialogue(DialogueLine line)
         {
-
-            // Set text and start fading in
-            subtitleText.text = line.useTypewriter ? "" : line.text;
             yield return StartCoroutine(FadeCanvasGroup(true));
 
             // Start Audio

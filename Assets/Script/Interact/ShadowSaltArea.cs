@@ -80,6 +80,16 @@ namespace QuestSystem
         private void PourSalt()
         {
             _isSaltPoured = true;
+
+            // Animasyon yerine doğrudan sesi çal
+            if (PlayerCarryController.Instance != null)
+            {
+                SaltItem saltItem = PlayerCarryController.Instance.GetCurrentSaltItem();
+                if (saltItem != null)
+                {
+                    saltItem.PlayPourSoundEvent();
+                }
+            }
             // Görev tamamlama
             if (completeSubTaskOnPour && QuestManager.Instance != null)
             {

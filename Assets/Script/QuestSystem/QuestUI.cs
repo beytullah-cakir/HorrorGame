@@ -97,7 +97,7 @@ namespace QuestSystem
 
         private void ClearUI()
         {
-            if (questTitleText != null) questTitleText.text = "No Active Quest";
+            if (questTitleText != null) questTitleText.text = "";
             if (subTasksText != null) subTasksText.text = "";
         }
     }

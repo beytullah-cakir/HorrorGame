@@ -193,8 +193,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleFootsteps()
     {
-        // If not grounded or not moving, reset timer and return
-        if (!grounded || _moveInput == Vector2.zero)
+        // Hareket yoksa zamanlayıcıyı sıfırla ve çık
+        if (_moveInput == Vector2.zero)
         {
             _footstepTimer = 0.0f;
             return;
@@ -206,14 +206,14 @@ public class FirstPersonController : MonoBehaviour
         {
             if (footstepAudioSource != null && footstepAudioSource.clip != null)
             {
-                // Add some pitch variation for variety
+                // Ton çeşitliliği ekle
                 footstepAudioSource.pitch = 1.0f + Random.Range(-footstepPitchVariance, footstepPitchVariance);
                 
-                // Play the clip assigned to the AudioSource
+                // AudioSource'taki klibi çal
                 footstepAudioSource.PlayOneShot(footstepAudioSource.clip);
             }
 
-            // Reset timer
+            // Zamanlayıcıyı sıfırla
             _footstepTimer = footstepFrequency;
         }
     }

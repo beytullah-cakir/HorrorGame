@@ -7,40 +7,15 @@ namespace QuestSystem
         [Header("Quest Settings")]
         [SerializeField] private Quest requiredQuest;
 
-        [Header("Animation & Sound")]
-        [SerializeField] private Animator itemAnimator;
-        [SerializeField] private AudioClip pourSound;
+        [Header("Sound Settings")]
+        [SerializeField] private AudioSource pourAudioSource;
 
-        // Bu metod, tuz dökme animasyonunun içine koyacağınız Animation Event tarafından çağrılacak
+        // Sesin doğrudan çalınması için
         public void PlayPourSoundEvent()
         {
-            if (pourSound != null)
+            if (pourAudioSource != null)
             {
-                AudioSource.PlayClipAtPoint(pourSound, transform.position);
-            }
-        }
-
-        // Bu metod, tuz dökme animasyonu bittiğinde çağrılacak Animation Event
-        public void FinishPourAnimationEvent()
-        {
-            FirstPersonController player = FindObjectOfType<FirstPersonController>();
-            if (player != null)
-            {
-                player.UnlockPlayerAll();
-            }
-        }
-
-        public void TriggerPourAnimation()
-        {
-            if (itemAnimator != null)
-            {
-                itemAnimator.SetTrigger("PourSalt"); // Animator'daki tetikleyici adı
-            }
-
-            FirstPersonController player = FindObjectOfType<FirstPersonController>();
-            if (player != null)
-            {
-                player.LockPlayerAll();
+                pourAudioSource.Play();
             }
         }
 
