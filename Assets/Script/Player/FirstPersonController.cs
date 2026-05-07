@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using DialogueSystem;
-
 [RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
@@ -42,6 +40,9 @@ public class FirstPersonController : MonoBehaviour
     public AudioSource footstepAudioSource;
     [Tooltip("How often to play a footstep sound while walking")]
     public float footstepFrequency = 0.5f;
+    [Tooltip("Variation in pitch for more natural sound")]
+    [Range(0f, 0.2f)]
+    public float footstepPitchVariance = 0.1f;
 
     // Internal variables
     private CharacterController _controller;
@@ -56,10 +57,9 @@ public class FirstPersonController : MonoBehaviour
     private Vector2 _moveInput;
     private Vector2 _lookInput;
     private bool _jumpInput;
-    private int _lockCount = 0;
     private int _fullLockCount = 0;
     public bool isTimelinePlaying = false;
-    private bool IsLocked => _lockCount > 0 || isTimelinePlaying;
+    private bool IsLocked => isTimelinePlaying;
     private bool IsFullyLocked => _fullLockCount > 0;
 
     public void SetTimelineState(bool active)
@@ -188,12 +188,17 @@ public class FirstPersonController : MonoBehaviour
         // move the player
         _controller.Move(inputDirection.normalized * (targetSpeed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity.y, 0.0f) * Time.deltaTime);
 
-        HandleFootsteps(targetSpeed);
+        HandleFootsteps();
     }
 
-    private void HandleFootsteps(float speed)
+    private void HandleFootsteps()
     {
-        if (!grounded || _moveInput == Vector2.zero) return;
+        // If not grounded or not moving, reset timer and return
+        if (!grounded || _moveInput == Vector2.zero)
+        {
+            _footstepTimer = 0.0f;
+            return;
+        }
 
         _footstepTimer -= Time.deltaTime;
 
@@ -201,9 +206,14 @@ public class FirstPersonController : MonoBehaviour
         {
             if (footstepAudioSource != null && footstepAudioSource.clip != null)
             {
+                // Add some pitch variation for variety
+                footstepAudioSource.pitch = 1.0f + Random.Range(-footstepPitchVariance, footstepPitchVariance);
+                
+                // Play the clip assigned to the AudioSource
                 footstepAudioSource.PlayOneShot(footstepAudioSource.clip);
             }
 
+            // Reset timer
             _footstepTimer = footstepFrequency;
         }
     }

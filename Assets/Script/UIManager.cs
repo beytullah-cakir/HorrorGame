@@ -6,8 +6,22 @@ public class UIManager : MonoBehaviour
     [Tooltip("Kontrol edilecek paneli buraya sürükleyin")]
     [SerializeField] private GameObject panel;
 
+    private void Start()
+    {
+        // İmleci görünür ve serbest yap
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
     private void Update()
     {
+        // Başka scriptler (örn: FirstPersonController) imleci gizlemeye çalışırsa diye her zaman görünür tut
+        if (Cursor.lockState != CursorLockMode.None || !Cursor.visible)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
         // Sağ tık (RMB) basıldığında panel açıksa kapat
         if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame)
         {

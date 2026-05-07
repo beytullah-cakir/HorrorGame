@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4333e253832104ab345e78c82fa756, type: 3}
   m_Name: Place Box
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
-  id: 
-  title: Kutuyu salona koy
+  title: KUTUYU SALONA KOY
   state: 0
   autoActivateNext: 1
   subTasks: []

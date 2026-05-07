@@ -10,7 +10,6 @@ namespace QuestSystem
 
         [Header("UI Elements")]
         [SerializeField] private GameObject notePanel;
-        [SerializeField] private Button closeButton;
         
         private System.Action _onCloseCallback;
 
@@ -28,11 +27,6 @@ namespace QuestSystem
             if (notePanel != null)
             {
                 notePanel.SetActive(false);
-            }
-
-            if (closeButton != null)
-            {
-                closeButton.onClick.AddListener(CloseNote);
             }
         }
 

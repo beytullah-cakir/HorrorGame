@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4333e253832104ab345e78c82fa756, type: 3}
   m_Name: Bedroom items
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
-  title: "Yatak odas\u0131ndaki e\u015Fyalar\u0131 topla"
+  title: YATAK ODASINDAKI ESYALARI TOPLA
   state: 2
   autoActivateNext: 1
   subTasks:
-  - description: Cep Saati
+  - description: CEP SAATI
     isCompleted: 0
     targetCount: 0
     currentCount: 0
-  - description: Palto
+  - description: PALTO
     isCompleted: 0
     targetCount: 0
     currentCount: 0
-  - description: "Aile Foto\u011Fraf\u0131"
+  - description: AILE FOTOGRAFI
     isCompleted: 0
     targetCount: 0
     currentCount: 0

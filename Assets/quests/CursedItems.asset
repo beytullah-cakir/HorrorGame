@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4333e253832104ab345e78c82fa756, type: 3}
   m_Name: CursedItems
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
-  title: "Lanetli e\u015Fyalar\u0131 bul ve yak"
-  state: 2
+  title: LANETLI ESYALARI BUL VE TOPLA
+  state: 0
   autoActivateNext: 1
   subTasks:
-  - description: "Oyuncak ay\u0131"
+  - description: OYUNCAK AYI
     isCompleted: 0
     targetCount: 0
     currentCount: 0
-  - description: "Rit\xFCel notlar\u0131"
+  - description: RITUEL NOTLARI
     isCompleted: 0
     targetCount: 0
     currentCount: 0
-  - description: "T\u0131ls\u0131m"
+  - description: TILSIM
     isCompleted: 0
     targetCount: 0
     currentCount: 0

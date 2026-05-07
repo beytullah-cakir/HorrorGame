@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4333e253832104ab345e78c82fa756, type: 3}
   m_Name: Find Key
   m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.Quest
-  id: 
-  title: "Banyonun anahtar\u0131n\u0131 bul"
+  title: BANYONUN ANAHTARINI BUL
   state: 0
   autoActivateNext: 1
   subTasks: []
